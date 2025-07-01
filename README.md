@@ -1,4 +1,24 @@
-# APTArena: Game Theory based APT Attack and Defense Evaluation
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/Yuni0217/APTArena">
+  </a>
+  <br />
+
+  <!-- Badges -->
+  <img src="https://img.shields.io/github/repo-size/Yuning-J/APTArena?style=for-the-badge" alt="GitHub repo size" height="25">
+  <img src="https://img.shields.io/github/last-commit/Yuning-J/APTArena?style=for-the-badge" alt="GitHub last commit" height="25">
+  <img src="https://img.shields.io/github/license/Yuning-J/APTArena?style=for-the-badge" alt="License" height="25">
+  <br />
+  
+  <h3 align="center">APTArena</h3>
+  <p align="center">
+    Game Theory based APT Attack and Defense Evaluation.
+ 
+  </p>
+</p>
+
 
 ## Overview
 Cybersecurity simulation arena for testing and benchmarking defense strategies against APTs using RL-based, hybrid, and traditional approaches.
