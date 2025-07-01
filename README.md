@@ -27,7 +27,7 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
 - Simulation of APT3-style attack scenarios on enterprise networks
 - Multiple defender strategies: Hybrid (CyGATE), CVSS, Business Value, Cost-Benefit, and more
 - Reinforcement Learning (RL) component for adaptive defense
-- Threat intelligence integration
+- Threat intelligence integration using our project [CVE-KGRAG](https://github.com/Yuning-J/CVE-KGRAG) 
 - Comprehensive result analysis and visualizations
 - Modular codebase for research and extension
 
