@@ -1,0 +1,1609 @@
+{
+  "Assets": [
+    {
+      "asset_id": 1,
+      "type": "Domain Controller",
+      "name": "Domain Controller",
+      "criticality_level": 5,
+      "business_value": 35000,
+      "ip_address": "192.168.1.10",
+      "mac_address": "00:11:22:33:44:10",
+      "components": [
+        {
+          "id": 1,
+          "type": "Operating System",
+          "vendor": "Microsoft",
+          "name": "Windows Server",
+          "version": "2019",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2024-21338",
+              "cvss": 7.8,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 1.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 1,
+              "epss": 0.80926,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-822"
+              ],
+              "mitre_techniques": [
+                "T1499"
+              ],
+              "exploitability": 0.6997794615384615
+            },
+            {
+              "cve_id": "CVE-2014-4113",
+              "cvss": 7.8,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 1.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.77847,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-269"
+              ],
+              "mitre_techniques": [
+                "T1548"
+              ],
+              "exploitability": 0.5890029615384615
+            },
+            {
+              "cve_id": "CVE-2023-36884",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 1.6,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 1,
+              "epss": 0.93071,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-362"
+              ],
+              "mitre_techniques": [
+                "T1068",
+                "T1203"
+              ],
+              "exploitability": 0.7293382435897436
+            },
+            {
+              "cve_id": "CVE-2023-36028",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.00332,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-122"
+              ],
+              "mitre_techniques": [
+                "T1055"
+              ],
+              "exploitability": 0.356162
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "Directory Service",
+          "vendor": "Microsoft",
+          "name": "Active Directory",
+          "version": "2019",
+          "embedded_in": 1,
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2021-42278",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "likelihood": 3.9,
+              "impact": 3.6,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 2,
+              "epss": 0.94019,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-287"
+              ],
+              "mitre_techniques": [
+                "T1040",
+                "T1505.003",
+                "T1185",
+                "T1550.001",
+                "T1557",
+                "T1548",
+                "T1563",
+                "T1134"
+              ],
+              "exploitability": 0.9690665
+            },
+            {
+              "cve_id": "CVE-2021-34527",
+              "cvss": 8.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 2.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 2,
+              "epss": 0.94257,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-269"
+              ],
+              "mitre_techniques": [
+                "T1548"
+              ],
+              "exploitability": 0.8361815512820513
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "Backup Service",
+          "vendor": "Microsoft",
+          "name": "Windows Backup",
+          "version": "10.0",
+          "embedded_in": 1,
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2021-35971",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 3,
+              "epss": 0.00775,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-502"
+              ],
+              "mitre_techniques": [
+                "T1190"
+              ],
+              "exploitability": 0.3577125
+            }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "asset_id": 2,
+      "type": "File Server",
+      "name": "File Server",
+      "criticality_level": 4,
+      "business_value": 25000,
+      "ip_address": "192.168.1.20",
+      "mac_address": "00:11:22:33:44:20",
+      "components": [
+        {
+          "id": 1,
+          "type": "Operating System",
+          "vendor": "Microsoft",
+          "name": "Windows Server",
+          "version": "2019",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2023-36884",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 1.6,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 1,
+              "epss": 0.93071,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-362"
+              ],
+              "mitre_techniques": [
+                "T1068",
+                "T1203"
+              ],
+              "exploitability": 0.7293382435897436
+            },
+            {
+              "cve_id": "CVE-2022-0492",
+              "cvss": 7.8,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 1.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.07365,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-862",
+                "CWE-287"
+              ],
+              "mitre_techniques": [
+                "T1542.002",
+                "T1040",
+                "T1505.003",
+                "T1185",
+                "T1211",
+                "T1550.001",
+                "T1557",
+                "T1556",
+                "T1548",
+                "T1563",
+                "T1134"
+              ],
+              "exploitability": 0.38731596153846154
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "File Sharing Service",
+          "vendor": "Microsoft",
+          "name": "SMB/CIFS",
+          "version": "3.1.1",
+          "embedded_in": 1,
+          "vulnerabilities": [
+            {
+  "cve_id": "CVE-2020-0796",
+  "cvss": 10.0,
+  "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+  "likelihood": 3.9,
+  "impact": 6.0,
+  "exploit": 1,
+  "scopeChanged": true,
+  "ransomWare": 1,
+  "component_id": 2,
+  "epss": 0.94419,
+  "is_patched": false,
+  "is_exploited": false,
+  "cwe_id": ["CWE-119"],
+  "mitre_techniques": ["T1055",
+      "T1210",
+      "T1068"],
+  "exploitability": 0.900000
+},
+            {
+              "cve_id": "CVE-2017-0143",
+              "cvss": 8.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 2.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 2,
+              "epss": 0.93987,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-20"
+              ],
+              "mitre_techniques": [
+                "T1553.002",
+                "T1574.006",
+                "T1027",
+                "T1562.003",
+                "T1539",
+                "T1574.007",
+                "T1036.001"
+              ],
+              "exploitability": 0.8652365512820513
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "PDF Reader",
+          "vendor": "Adobe",
+          "name": "Adobe Reader",
+          "version": "XI",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2014-1776",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 3,
+              "epss": 0.78691,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-416"
+              ],
+              "mitre_techniques": [
+                "T1203"
+              ],
+              "exploitability": 0.7804184999999999
+            }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "asset_id": 3,
+      "type": "Workstation",
+      "name": "User Workstation 1",
+      "criticality_level": 3,
+      "business_value": 12000,
+      "ip_address": "192.168.1.30",
+      "mac_address": "00:11:22:33:44:30",
+      "components": [
+        {
+          "id": 1,
+          "type": "Operating System",
+          "vendor": "Microsoft",
+          "name": "Windows 10",
+          "version": "1909",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2014-6332",
+              "cvss": 8.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 2.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.94069,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-119"
+              ],
+              "mitre_techniques": [
+                "T1210",
+                "T1055",
+                "T1068"
+              ],
+              "exploitability": 0.7455235512820513
+            },
+            {
+              "cve_id": "CVE-2017-8692",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 1.6,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.38127,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-119"
+              ],
+              "mitre_techniques": [
+                "T1210",
+                "T1055",
+                "T1068"
+              ],
+              "exploitability": 0.44203424358974364
+            },
+            {
+              "cve_id": "CVE-2021-3156",
+              "cvss": 7.8,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 1.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.92019,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-193"
+              ],
+              "mitre_techniques": [
+                "T1203"
+              ],
+              "exploitability": 0.6386049615384616
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "Web Browser",
+          "vendor": "Microsoft",
+          "name": "Internet Explorer",
+          "version": "11",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2013-3893",
+              "cvss": 8.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 2.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.76559,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-399"
+              ],
+              "mitre_techniques": ["T1203","T1189"],
+              "exploitability": 0.6692385512820512
+            },
+            {
+  "cve_id": "CVE-2023-7024",
+  "cvss": 8.8,
+  "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+  "likelihood": 2.8,
+  "impact": 5.9,
+  "exploit": 1,
+  "scopeChanged": false,
+  "ransomWare": 0,
+  "component_id": 2,
+  "epss": 0.01632,
+  "is_patched": false,
+  "is_exploited": false,
+  "cwe_id": ["CWE-787"],
+  "mitre_techniques": ["T1203"],
+  "exploitability": 0.850000
+},
+            {
+              "cve_id": "CVE-2020-0674",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "likelihood": 1.6,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.93744,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-416"
+              ],
+              "mitre_techniques": [
+                "T1203"
+              ],
+              "exploitability": 0.6266937435897436
+            },
+            {
+              "cve_id": "CVE-2015-3113",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.92609,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-787"
+              ],
+              "mitre_techniques": [
+                "T1203"
+              ],
+              "exploitability": 0.8291314999999999
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "Application Server",
+          "vendor": "Apache",
+          "name": "Apache Tomcat",
+          "version": "9.0.2",
+          "embedded_in": 1,
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2020-1938",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 3,
+              "epss": 0.94469,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-285"
+              ],
+              "mitre_techniques": [
+                "T1565.002",
+                "T1574.006",
+                "T1550.004",
+                "T1012",
+                "T1005",
+                "T1083",
+                "T1574.005",
+                "T1562.003",
+                "T1574.010",
+                "T1574.007",
+                "T1134.001",
+                "T1552.002"
+              ],
+              "exploitability": 0.8806415
+            }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+  "asset_id": 4,
+  "type": "Workstation",
+  "name": "User Workstation 2",
+  "criticality_level": 3,
+  "business_value": 12000,
+  "ip_address": "192.168.1.40",
+  "mac_address": "00:11:22:33:44:40",
+  "components": [
+    {
+      "id": 1,
+      "type": "Operating System",
+      "vendor": "Microsoft",
+      "name": "Windows 10",
+      "version": "21H2",
+      "vulnerabilities": [
+        {
+          "cve_id": "CVE-2024-30051",
+          "cvss": 7.8,
+          "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+          "likelihood": 1.8,
+          "impact": 5.9,
+          "exploit": 1,
+          "scopeChanged": false,
+          "ransomWare": 1,
+          "component_id": 1,
+          "epss": 0.39898,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-787",
+            "CWE-122"
+          ],
+          "mitre_techniques": [
+            "T1055",
+            "T1203"
+          ],
+          "exploitability": 0.5611814615384615
+        },
+        {
+          "cve_id": "CVE-2024-29988",
+          "cvss": 8.8,
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+          "likelihood": 2.8,
+          "impact": 5.9,
+          "exploit": 1,
+          "scopeChanged": false,
+          "ransomWare": 0,
+          "component_id": 1,
+          "epss": 0.64766,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-693"
+          ],
+          "mitre_techniques": [
+            "T1040",
+            "T1565.002",
+            "T1083",
+            "T1574.005",
+            "T1611",
+            "T1574.010"
+          ],
+          "exploitability": 0.6579630512820513
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "Office Suite",
+      "vendor": "Microsoft",
+      "name": "Microsoft Office",
+      "version": "2019",
+      "vulnerabilities": [
+        {
+          "cve_id": "CVE-2023-35311",
+          "cvss": 8.8,
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+          "likelihood": 2.8,
+          "impact": 5.9,
+          "exploit": 0,
+          "scopeChanged": false,
+          "ransomWare": 0,
+          "component_id": 2,
+          "epss": 0.01272,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-367"
+          ],
+          "mitre_techniques": [
+            "T1068",
+            "T1548"
+          ],
+          "exploitability": 0.2657340512820513
+        },
+        {
+          "cve_id": "CVE-2021-38646",
+          "cvss": 7.8,
+          "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+          "likelihood": 1.8,
+          "impact": 5.9,
+          "exploit": 0,
+          "scopeChanged": false,
+          "ransomWare": 1,
+          "component_id": 2,
+          "epss": 0.68883,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-119"
+          ],
+          "mitre_techniques": [
+            "T1210",
+            "T1055",
+            "T1068"
+          ],
+          "exploitability": 0.5176289615384616
+        },
+        {
+          "cve_id": "CVE-2024-38021",
+          "cvss": 8.8,
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+          "likelihood": 2.8,
+          "impact": 5.9,
+          "exploit": 0,
+          "scopeChanged": false,
+          "ransomWare": 0,
+          "component_id": 2,
+          "epss": 0.13718,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-20"
+          ],
+          "mitre_techniques": [
+            "T1553.002",
+            "T1574.006",
+            "T1027",
+            "T1562.003",
+            "T1539",
+            "T1574.007",
+            "T1036.001"
+          ],
+          "exploitability": 0.3342950512820512
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "Monitoring Software",
+      "vendor": "Nagios",
+      "name": "Nagios XI",
+      "version": "5.8.5",
+      "vulnerabilities": [
+        {
+          "cve_id": "CVE-2021-25296",
+          "cvss": 8.8,
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+          "likelihood": 2.8,
+          "impact": 5.9,
+          "exploit": 1,
+          "scopeChanged": false,
+          "ransomWare": 0,
+          "component_id": 3,
+          "epss": 0.93482,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-78"
+          ],
+          "mitre_techniques": [
+            "T1059",
+            "T1190"
+          ],
+          "exploitability": 0.7384690512820512
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "VPN Software",
+      "vendor": "Fortinet",
+      "name": "FortiClient VPN",
+      "version": "6.0",
+      "vulnerabilities": [
+        {
+          "cve_id": "CVE-2018-13379",
+          "cvss": 9.1,
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H",
+          "likelihood": 3.9,
+          "impact": 5.2,
+          "exploit": 1,
+          "scopeChanged": false,
+          "ransomWare": 0,
+          "component_id": 4,
+          "epss": 0.99989,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-22"
+          ],
+          "mitre_techniques": [
+            "T1195",
+            "T1190"
+          ],
+          "exploitability": 0.711
+        }
+      ]
+    }
+  ],
+  "adjacency_matrix": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0
+    ]
+  ]
+},
+    {
+      "asset_id": 5,
+      "type": "Web Server",
+      "name": "Web Server",
+      "criticality_level": 3,
+      "business_value": 20000,
+      "ip_address": "192.168.2.10",
+      "mac_address": "00:11:22:33:44:50",
+      "components": [
+        {
+          "id": 1,
+          "type": "Operating System",
+          "vendor": "Microsoft",
+          "name": "Windows Server",
+          "version": "2019",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2023-36028",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.00332,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-122"
+              ],
+              "mitre_techniques": [
+                "T1055"
+              ],
+              "exploitability": 0.356162
+            },
+            {
+              "cve_id": "CVE-2024-6387",
+              "cvss": 8.1,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 2.2,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.5924,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-362",
+                "CWE-364"
+              ],
+              "mitre_techniques": [
+                "T1068",
+                "T1203"
+              ],
+              "exploitability": 0.5647758974358975
+            },
+            {
+              "cve_id": "CVE-2015-1635",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.9431,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-94"
+              ],
+              "mitre_techniques": [
+                "T1027.009",
+                "T1564.009",
+                "T1027.006"
+              ],
+              "exploitability": 0.8450850000000001
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "Web Server Application",
+          "vendor": "Microsoft",
+          "name": "IIS",
+          "version": "10.0",
+          "embedded_in": 1,
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2017-7269",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.94381,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-120"
+              ],
+              "mitre_techniques": [
+                "T1210",
+                "T1055",
+                "T1068"
+              ],
+              "exploitability": 0.8453335
+            },
+            {
+              "cve_id": "CVE-2015-3113",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.92609,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-787"
+              ],
+              "mitre_techniques": [
+                "T1203"
+              ],
+              "exploitability": 0.8291314999999999
+            },
+            {
+              "cve_id": "CVE-2021-41773",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "likelihood": 3.9,
+              "impact": 3.6,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 2,
+              "epss": 0.97447,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-22"
+              ],
+              "mitre_techniques": [
+                "T1083",
+                "T1210",
+                "T1059.001"
+              ],
+              "exploitability": 0.9560645
+            },
+            {
+          "cve_id": "ZERO-DAY-001",
+          "cvss": 9.0,
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "likelihood": 3.9,
+          "impact": 5.9,
+          "exploit": 1,
+          "scopeChanged": false,
+          "ransomWare": 0,
+          "component_id": 2,
+          "epss": 0.9,
+          "is_patched": false,
+          "is_exploited": false,
+          "cwe_id": [
+            "CWE-287"
+          ],
+          "mitre_techniques": [
+            "T1190"
+          ],
+          "exploitability": 0.54
+        }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "asset_id": 6,
+      "type": "HMI Workstation",
+      "name": "HMI Control Station",
+      "criticality_level": 4,
+      "business_value": 25000,
+      "ip_address": "192.168.3.10",
+      "mac_address": "00:11:22:33:44:60",
+      "components": [
+        {
+          "id": 1,
+          "type": "Operating System",
+          "vendor": "Microsoft",
+          "name": "Windows 10",
+          "version": "LTSC 2019",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2024-26169",
+              "cvss": 7.8,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 1.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 1,
+              "component_id": 1,
+              "epss": 0.00316,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-269"
+              ],
+              "mitre_techniques": [
+                "T1548"
+              ],
+              "exploitability": 0.4176444615384616
+            },
+            {
+              "cve_id": "CVE-2022-34918",
+              "cvss": 7.8,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 1.8,
+              "impact": 5.9,
+              "exploit": 1,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.00635,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-843"
+              ],
+              "mitre_techniques": [
+                "T1203"
+              ],
+              "exploitability": 0.31876096153846156
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "HMI Software",
+          "vendor": "Siemens",
+          "name": "SIMATIC WinCC",
+          "version": "7.5",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2016-5743",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.04346,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-20"
+              ],
+              "mitre_techniques": [
+                "T1553.002",
+                "T1574.006",
+                "T1027",
+                "T1562.003",
+                "T1539",
+                "T1574.007",
+                "T1036.001"
+              ],
+              "exploitability": 0.40021099999999993
+            },
+            {
+              "cve_id": "CVE-2021-1636",
+              "cvss": 8.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 2.8,
+              "impact": 5.9,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 2,
+              "epss": 0.00157,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-89"
+              ],
+              "mitre_techniques": [
+                "T1505.003",
+                "T1190",
+                "T1565.001"
+              ],
+              "exploitability": 0.26683155128205127
+            }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "asset_id": 7,
+      "type": "PLC",
+      "name": "Production Control PLC",
+      "criticality_level": 5,
+      "business_value": 35000,
+      "ip_address": "192.168.3.20",
+      "mac_address": "00:11:22:33:44:70",
+      "components": [
+        {
+          "id": 1,
+          "type": "PLC Software",
+          "vendor": "Siemens",
+          "name": "S7-1500",
+          "version": "2.8",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2016-9159",
+              "cvss": 5.9,
+              "cvssV3Vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "likelihood": 2.2,
+              "impact": 3.6,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.002,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-200"
+              ],
+              "mitre_techniques": [
+                "T1615",
+                "T1087",
+                "T1007",
+                "T1046",
+                "T1036.005",
+                "T1550.004",
+                "T1016",
+                "T1590",
+                "T1592",
+                "T1057",
+                "T1082",
+                "T1120",
+                "T1574.006",
+                "T1033",
+                "T1049",
+                "T1124",
+                "T1111",
+                "T1135",
+                "T1217",
+                "T1083",
+                "T1018",
+                "T1069",
+                "T1595",
+                "T1562.003",
+                "T1574.007",
+                "T1134.001"
+              ],
+              "exploitability": 0.24813589743589748
+            },
+            {
+              "cve_id": "CVE-2022-38465",
+              "cvss": 9.3,
+              "cvssV3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+              "likelihood": 2.5,
+              "impact": 6.0,
+              "exploit": 0,
+              "scopeChanged": true,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.00083,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-522"
+              ],
+              "mitre_techniques": [
+                "T1550.003",
+                "T1114.002",
+                "T1133",
+                "T1110.004",
+                "T1558.003",
+                "T1552.004",
+                "T1078",
+                "T1558",
+                "T1021",
+                "T1550.002",
+                "T1021.002",
+                "T1543"
+              ],
+              "exploitability": 0.27464947435897435
+            }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "asset_id": 8,
+      "type": "RTU",
+      "name": "Remote Terminal Unit",
+      "criticality_level": 4,
+      "business_value": 30000,
+      "ip_address": "192.168.3.30",
+      "mac_address": "00:11:22:33:44:80",
+      "components": [
+        {
+          "id": 1,
+          "type": "RTU Firmware",
+          "vendor": "Schneider Electric",
+          "name": "Modicon M580",
+          "version": "3.20",
+          "vulnerabilities": [
+            {
+              "cve_id": "CVE-2019-10922",
+              "cvss": 9.8,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "likelihood": 3.9,
+              "impact": 5.9,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.00342,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-306"
+              ],
+              "mitre_techniques": [
+                "T1199",
+                "T1078",
+                "T1133"
+              ],
+              "exploitability": 0.366197
+            },
+            {
+              "cve_id": "CVE-2020-7491",
+              "cvss": 7.5,
+              "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "likelihood": 3.9,
+              "impact": 3.6,
+              "exploit": 0,
+              "scopeChanged": false,
+              "ransomWare": 0,
+              "component_id": 1,
+              "epss": 0.00249,
+              "is_patched": false,
+              "is_exploited": false,
+              "cwe_id": [
+                "CWE-284"
+              ],
+              "mitre_techniques": [
+                "T1553.004",
+                "T1574.011",
+                "T1546.008",
+                "T1014",
+                "T1543.001",
+                "T1562.008",
+                "T1547.006",
+                "T1562.007",
+                "T1546.004",
+                "T1543.003",
+                "T1027.009",
+                "T1543.004",
+                "T1037",
+                "T1505.005",
+                "T1556.006",
+                "T1562.002",
+                "T1547",
+                "T1542.003",
+                "T1080",
+                "T1562.001",
+                "T1546.001",
+                "T1562.009",
+                "T1562.004",
+                "T1546.016",
+                "T1543"
+              ],
+              "exploitability": 0.4008715
+            }
+          ]
+        }
+      ],
+      "adjacency_matrix": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+  "asset_id": "internet",
+  "type": "External",
+  "name": "Internet",
+  "criticality_level": 0,
+  "business_value": 0,
+  "ip_address": "0.0.0.0",
+  "mac_address": "00:00:00:00:00:00",
+  "components": []
+}
+  ],
+  "Connections": [
+    {
+      "from_asset_id": 1,
+      "src_ip": "192.168.1.10",
+      "src_mac": "00:11:22:33:44:10",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 2,
+      "dst_ip": "192.168.1.20",
+      "dst_mac": "00:11:22:33:44:20",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 1,
+      "src_ip": "192.168.1.10",
+      "src_mac": "00:11:22:33:44:10",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 3,
+      "dst_ip": "192.168.1.30",
+      "dst_mac": "00:11:22:33:44:30",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+  "from_asset_id": "internet",
+  "src_ip": "0.0.0.0",
+  "src_mac": "00:00:00:00:00:00",
+  "src_subnet": "0.0.0.0/0",
+  "to_asset_id": 4,
+  "dst_ip": "192.168.1.40",
+  "dst_mac": "00:11:22:33:44:40",
+  "dst_subnet": "192.168.1.0/24"
+},
+{
+  "from_asset_id": "internet",
+  "src_ip": "0.0.0.0",
+  "src_mac": "00:00:00:00:00:00",
+  "src_subnet": "0.0.0.0/0",
+  "to_asset_id": 5,
+  "dst_ip": "192.168.2.10",
+  "dst_mac": "00:11:22:33:44:50",
+  "dst_subnet": "192.168.2.0/24"
+},
+    {
+      "from_asset_id": 1,
+      "src_ip": "192.168.1.10",
+      "src_mac": "00:11:22:33:44:10",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 4,
+      "dst_ip": "192.168.1.40",
+      "dst_mac": "00:11:22:33:44:40",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+  "from_asset_id": 1,
+  "src_ip": "192.168.1.10",
+  "src_mac": "00:11:22:33:44:10",
+  "src_subnet": "192.168.1.0/24",
+  "to_asset_id": 6,
+  "dst_ip": "192.168.3.10",
+  "dst_mac": "00:11:22:33:44:60",
+  "dst_subnet": "192.168.3.0/24"
+},
+    {
+      "from_asset_id": 2,
+      "src_ip": "192.168.1.20",
+      "src_mac": "00:11:22:33:44:20",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 1,
+      "dst_ip": "192.168.1.10",
+      "dst_mac": "00:11:22:33:44:10",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 2,
+      "src_ip": "192.168.1.20",
+      "src_mac": "00:11:22:33:44:20",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 3,
+      "dst_ip": "192.168.1.30",
+      "dst_mac": "00:11:22:33:44:30",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 2,
+      "src_ip": "192.168.1.20",
+      "src_mac": "00:11:22:33:44:20",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 4,
+      "dst_ip": "192.168.1.40",
+      "dst_mac": "00:11:22:33:44:40",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 2,
+      "src_ip": "192.168.1.20",
+      "src_mac": "00:11:22:33:44:20",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 6,
+      "dst_ip": "192.168.3.10",
+      "dst_mac": "00:11:22:33:44:60",
+      "dst_subnet": "192.168.3.0/24"
+    },
+    {
+      "from_asset_id": 3,
+      "src_ip": "192.168.1.30",
+      "src_mac": "00:11:22:33:44:30",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 1,
+      "dst_ip": "192.168.1.10",
+      "dst_mac": "00:11:22:33:44:10",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 3,
+      "src_ip": "192.168.1.30",
+      "src_mac": "00:11:22:33:44:30",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 2,
+      "dst_ip": "192.168.1.20",
+      "dst_mac": "00:11:22:33:44:20",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 3,
+      "src_ip": "192.168.1.30",
+      "src_mac": "00:11:22:33:44:30",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 5,
+      "dst_ip": "192.168.2.10",
+      "dst_mac": "00:11:22:33:44:50",
+      "dst_subnet": "192.168.2.0/24"
+    },
+    {
+      "from_asset_id": 3,
+      "src_ip": "192.168.1.30",
+      "src_mac": "00:11:22:33:44:30",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 6,
+      "dst_ip": "192.168.3.10",
+      "dst_mac": "00:11:22:33:44:60",
+      "dst_subnet": "192.168.3.0/24"
+    },
+    {
+      "from_asset_id": 4,
+      "src_ip": "192.168.1.40",
+      "src_mac": "00:11:22:33:44:40",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 1,
+      "dst_ip": "192.168.1.10",
+      "dst_mac": "00:11:22:33:44:10",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 4,
+      "src_ip": "192.168.1.40",
+      "src_mac": "00:11:22:33:44:40",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 2,
+      "dst_ip": "192.168.1.20",
+      "dst_mac": "00:11:22:33:44:20",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 4,
+      "src_ip": "192.168.1.40",
+      "src_mac": "00:11:22:33:44:40",
+      "src_subnet": "192.168.1.0/24",
+      "to_asset_id": 5,
+      "dst_ip": "192.168.2.10",
+      "dst_mac": "00:11:22:33:44:50",
+      "dst_subnet": "192.168.2.0/24"
+    },
+    {
+      "from_asset_id": 5,
+      "src_ip": "192.168.2.10",
+      "src_mac": "00:11:22:33:44:50",
+      "src_subnet": "192.168.2.0/24",
+      "to_asset_id": 3,
+      "dst_ip": "192.168.1.30",
+      "dst_mac": "00:11:22:33:44:30",
+      "dst_subnet": "192.168.1.0/24"
+    },
+    {
+      "from_asset_id": 6,
+      "src_ip": "192.168.3.10",
+      "src_mac": "00:11:22:33:44:60",
+      "src_subnet": "192.168.3.0/24",
+      "to_asset_id": 7,
+      "dst_ip": "192.168.3.20",
+      "dst_mac": "00:11:22:33:44:70",
+      "dst_subnet": "192.168.3.0/24"
+    },
+    {
+      "from_asset_id": 6,
+      "src_ip": "192.168.3.10",
+      "src_mac": "00:11:22:33:44:60",
+      "src_subnet": "192.168.3.0/24",
+      "to_asset_id": 8,
+      "dst_ip": "192.168.3.30",
+      "dst_mac": "00:11:22:33:44:80",
+      "dst_subnet": "192.168.3.0/24"
+    },
+    {
+      "from_asset_id": 7,
+      "src_ip": "192.168.3.20",
+      "src_mac": "00:11:22:33:44:70",
+      "src_subnet": "192.168.3.0/24",
+      "to_asset_id": 6,
+      "dst_ip": "192.168.3.10",
+      "dst_mac": "00:11:22:33:44:60",
+      "dst_subnet": "192.168.3.0/24"
+    },
+    {
+      "from_asset_id": 8,
+      "src_ip": "192.168.3.30",
+      "src_mac": "00:11:22:33:44:80",
+      "src_subnet": "192.168.3.0/24",
+      "to_asset_id": 6,
+      "dst_ip": "192.168.3.10",
+      "dst_mac": "00:11:22:33:44:60",
+      "dst_subnet": "192.168.3.0/24"
+    }
+  ]
+}
