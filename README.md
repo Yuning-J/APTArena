@@ -1,4 +1,4 @@
-# APTArena: Cybersecurity Game Theory based APT Attack and Defense Evaluation
+# APTArena: Game Theory based APT Attack and Defense Evaluation
 
 ## Overview
 Cybersecurity simulation arena for testing and benchmarking defense strategies against APTs using RL-based, hybrid, and traditional approaches.
