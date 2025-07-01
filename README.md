@@ -44,8 +44,6 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
    source .venv/bin/activate
    pip install -r requirements.txt  # 
    ```
-3. **Install additional dependencies:**
-   - See the `requirements.txt` or `environment.yml` for details.
 
 ## Usage
 ### 1. **Run a Simulation**
