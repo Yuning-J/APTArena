@@ -42,23 +42,76 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         # RL parameters
         self.q_table_file = q_table_file
         self.q_table = self._load_q_table()
-        self.learning_rate = 0.1
-        self.discount_factor = 0.95
-        self.epsilon = 0.2
-        self.epsilon_min = 0.05
-        self.epsilon_decay = 0.995  # Faster decay for convergence
+        
+        # IMPROVED RL PARAMETERS for stability
+        self.learning_rate = 0.05      # Reduced for stability
+        self.discount_factor = 0.90    # Slightly reduced for near-term focus
+        self.epsilon = 0.3             # Higher initial exploration
+        self.epsilon_min = 0.1         # Higher minimum for continued exploration
+        self.epsilon_decay = 0.998     # Slower decay for better exploration
+        
+        # Add performance tracking
+        self.recent_rewards = []
+        self.recent_patch_counts = []
+        self.performance_window = 20
         self.episode_count = 0
+        
+        # Improved state bins for better discretization
         self.state_bins = {
-            'compromise_rate': [0.0, 0.1, 0.3, 1.0],
-            'unpatched_critical': [0, 10, 20, 50],
-            'budget_remaining': [0.0, 0.25, 0.5, 1.0]
+            'compromise_rate': [0.0, 0.05, 0.15, 0.30, 1.0],
+            'unpatched_critical': [0, 3, 8, 15, 50],  # More granular
+            'budget_remaining': [0.0, 0.15, 0.35, 0.60, 1.0]
         }
         self.weight_configs = [
-            {'cvss_weight': 0.20, 'epss_weight': 0.20, 'exploit_weight': 0.10, 'ransomware_weight': 0.10, 'business_value_weight': 0.00, 'risk_to_cost_weight': 0.40},
-            {'cvss_weight': 0.15, 'epss_weight': 0.15, 'exploit_weight': 0.15, 'ransomware_weight': 0.05, 'business_value_weight': 0.10, 'risk_to_cost_weight': 0.40},
-            {'cvss_weight': 0.10, 'epss_weight': 0.10, 'exploit_weight': 0.20, 'ransomware_weight': 0.10, 'business_value_weight': 0.10, 'risk_to_cost_weight': 0.40},
-            {'cvss_weight': 0.10, 'epss_weight': 0.10, 'exploit_weight': 0.10, 'ransomware_weight': 0.05, 'business_value_weight': 0.25, 'risk_to_cost_weight': 0.40},
-            {'cvss_weight': 0.25, 'epss_weight': 0.25, 'exploit_weight': 0.05, 'ransomware_weight': 0.05, 'business_value_weight': 0.00, 'risk_to_cost_weight': 0.40}
+            # Configuration 0: Balanced defensive approach
+            {
+                'cvss_weight': 0.25, 
+                'epss_weight': 0.25, 
+                'exploit_weight': 0.15, 
+                'ransomware_weight': 0.10, 
+                'business_value_weight': 0.15, 
+                'risk_to_cost_weight': 0.10
+            },
+            
+            # Configuration 1: Cost-conscious approach
+            {
+                'cvss_weight': 0.20, 
+                'epss_weight': 0.20, 
+                'exploit_weight': 0.10, 
+                'ransomware_weight': 0.05, 
+                'business_value_weight': 0.10, 
+                'risk_to_cost_weight': 0.35
+            },
+            
+            # Configuration 2: High-value asset protection
+            {
+                'cvss_weight': 0.15, 
+                'epss_weight': 0.15, 
+                'exploit_weight': 0.15, 
+                'ransomware_weight': 0.10, 
+                'business_value_weight': 0.35, 
+                'risk_to_cost_weight': 0.10
+            },
+            
+            # Configuration 3: Threat-reactive approach
+            {
+                'cvss_weight': 0.30, 
+                'epss_weight': 0.30, 
+                'exploit_weight': 0.20, 
+                'ransomware_weight': 0.15, 
+                'business_value_weight': 0.05, 
+                'risk_to_cost_weight': 0.00
+            },
+            
+            # Configuration 4: Aggressive patching
+            {
+                'cvss_weight': 0.35, 
+                'epss_weight': 0.25, 
+                'exploit_weight': 0.25, 
+                'ransomware_weight': 0.15, 
+                'business_value_weight': 0.00, 
+                'risk_to_cost_weight': 0.00
+            }
         ]
         self.last_state = None
         self.last_action = None
@@ -80,7 +133,7 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         except Exception as e:
             print(f"Error saving Q-table: {e}")
 
-    def initialize(self, state: State, cost_cache: Dict, defender_budget: float = None):
+    def initialize(self, state: State, cost_cache: Dict, defender_budget: float = 0.0):
         super().initialize(state, cost_cache)
         if defender_budget is not None:
             self.defender_budget = defender_budget
@@ -131,87 +184,71 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         return unpatched
 
     def _calculate_adaptive_step_budget(self, state: State, remaining_budget: float, current_step: int, total_steps: int) -> float:
-        if remaining_budget <= 0:
-            return 0
-        if total_steps <= 1:
-            return remaining_budget
-
-        if self._last_budget_step == current_step and self._last_budget_value is not None:
-            return self._last_budget_value
-
-        config = {
-            'min_budget': 500.0,
-            'max_budget': 5000.0,
-            'risk_weight': 0.60,
-            'attack_weight': 0.25,
-            'compromise_weight': 0.10,
-            'progress_weight': 0.05,
-            'exploit_boost': 2.0,
-            'compromise_threshold': 0.15,
-            'criticality_threshold': 4
+        """
+        Enhanced budget allocation with minimum spending guarantees
+        """
+        base_config = {
+            'min_budget_ratio': 0.08,      # Minimum 8% per step
+            'max_budget_ratio': 0.25,      # Maximum 25% per step
+            'emergency_ratio': 0.40,       # Emergency 40% spending
+            'compromise_threshold': 0.10,   # 10% compromise triggers emergency
+            'critical_threshold': 3,        # Critical asset threshold
         }
-
-        steps_remaining = total_steps - current_step
-        unpatched_vulns = self._get_unpatched_vulnerabilities(state, verbose=False)
-
-        risk_ratios = []
-        for vuln, asset, comp in unpatched_vulns:
-            try:
-                vuln_key = f"{vuln.cve_id}:{asset.asset_id}:{comp.id}"
-                risk_ratio = self._cost_cache.get('risk_to_cost_ratios', {}).get(
-                    vuln_key, self.cost_calculator.calculate_risk_to_cost_ratio(vuln, state, asset, comp.id))
-                risk_ratios.append(risk_ratio)
-            except Exception as e:
-                logger.error(f"Error calculating risk ratio for {vuln_key}: {e}")
-                risk_ratios.append(0.1)
-
-        total_risk = sum(risk_ratios) if risk_ratios else 0.0
-        max_risk = max(risk_ratios + [1.0]) if risk_ratios else 1.0
-        risk_score = total_risk / max_risk if max_risk > 0 else 0.1
-        risk_budget = remaining_budget * config['risk_weight'] * risk_score
-
-        attack_score = 0.0
-        if self._attacker_actions:
-            window_size = min(10, len(self._attacker_actions))
-            recent_actions = self._attacker_actions[-window_size:] if window_size > 0 else []
-            exploit_attempts = sum(1 for action in recent_actions if action.get('exploit_success', False))
-            high_value_targeting = any(
-                action.get('asset_id') and any(
-                    asset.asset_id == action.get('asset_id') and
-                    asset.criticality_level >= config['criticality_threshold']
-                    for asset in state.system.assets
-                ) for action in recent_actions
-            )
-            attack_score = (exploit_attempts / window_size if window_size > 0 else 0.0) * config['exploit_boost']
-            if high_value_targeting:
-                attack_score += 0.4
-            attack_score = min(attack_score, 1.0)
-        attack_budget = remaining_budget * config['attack_weight'] * attack_score
-
+        
+        # Calculate base step budget (ensure consistent spending)
+        steps_remaining = max(total_steps - current_step, 1)
+        base_step_budget = remaining_budget / steps_remaining
+        
+        # Minimum budget guarantee (prevent under-spending)
+        min_budget = remaining_budget * base_config['min_budget_ratio']
+        max_budget = remaining_budget * base_config['max_budget_ratio']
+        
+        step_budget = max(min_budget, min(base_step_budget, max_budget))
+        
+        # EMERGENCY BUDGET TRIGGERS
         compromised_assets = [asset for asset in state.system.assets if asset.is_compromised]
         compromise_rate = len(compromised_assets) / len(state.system.assets) if state.system.assets else 0.0
-        compromise_score = 1.0 if compromise_rate > config['compromise_threshold'] else compromise_rate
-        high_value_compromised = any(
-            asset.criticality_level >= config['criticality_threshold'] for asset in compromised_assets
+        
+        # Critical vulnerability emergency
+        unpatched_critical = sum(
+            1 for asset in state.system.assets 
+            for comp in asset.components 
+            for vuln in comp.vulnerabilities
+            if not vuln.is_patched and getattr(vuln, 'cvss', 0) >= 9.0
         )
-        if high_value_compromised:
-            compromise_score *= 1.8
-        compromise_budget = remaining_budget * config['compromise_weight'] * compromise_score
-
-        progress = current_step / total_steps if total_steps > 0 else 0.0
-        progress_score = progress if progress < 0.7 else 1.0
-        progress_budget = remaining_budget * config['progress_weight'] * progress_score
-
-        step_budget = risk_budget + attack_budget + compromise_budget + progress_budget
-        step_budget = max(config['min_budget'], min(step_budget, config['max_budget'], remaining_budget))
-
-        logger.debug(f"Step {current_step}: Adaptive Budget Allocation: "
-                    f"Risk=${risk_budget:.2f}, Attack=${attack_budget:.2f}, Compromise=${compromise_budget:.2f}, "
-                    f"Progress=${progress_budget:.2f}, Total=${step_budget:.2f}")
-
-        self._last_budget_step = current_step
-        self._last_budget_value = step_budget
-        self.defender_budget_history.append(step_budget)
+        
+        # High-value asset compromise emergency
+        high_value_compromised = any(
+            getattr(asset, 'business_value', 0) > 8000 and asset.is_compromised 
+            for asset in state.system.assets
+        )
+        
+        # TRIGGER EMERGENCY SPENDING
+        emergency_triggers = [
+            compromise_rate > base_config['compromise_threshold'],
+            unpatched_critical > 5,
+            high_value_compromised,
+            current_step > total_steps * 0.8 and remaining_budget > self.defender_budget * 0.3  # End-game spending
+        ]
+        
+        if any(emergency_triggers):
+            emergency_budget = remaining_budget * base_config['emergency_ratio']
+            step_budget = min(emergency_budget, remaining_budget)
+            print(f"EMERGENCY BUDGET ACTIVATED: ${step_budget:.2f} (Triggers: {emergency_triggers})")
+        
+        # PROACTIVE BUDGET BOOST (early prevention)
+        elif compromise_rate == 0.0 and current_step < total_steps * 0.3:
+            # Boost early spending for prevention
+            step_budget *= 1.3
+            step_budget = min(step_budget, max_budget, remaining_budget)
+            print(f"PROACTIVE BUDGET BOOST: ${step_budget:.2f}")
+        
+        # Budget validation
+        step_budget = max(min_budget, min(step_budget, remaining_budget))
+        
+        print(f"Step {current_step}: Budget=${step_budget:.2f}, Remaining=${remaining_budget:.2f}, "
+              f"Compromise={compromise_rate:.1%}, Critical={unpatched_critical}")
+        
         return step_budget
 
     def _get_state(self, state: State, remaining_budget: float, current_step: int) -> Tuple:
@@ -229,11 +266,15 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         return (compromise_bin, unpatched_bin, budget_bin)
 
     def _calculate_reward(self, state: State, patch_cost: float, patch_count: int) -> float:
+        """
+        Stabilized reward function with reduced volatility and better balance
+        """
         # Calculate total business value
         total_business_value = sum(
             getattr(asset, 'business_value', getattr(asset, 'criticality_level', 3) * 5000)
             for asset in state.system.assets
         )
+        
         # Calculate lost value from exploited vulnerabilities
         lost_value = 0.0
         processed_vulns = set()
@@ -243,32 +284,70 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                     if vuln.is_exploited and vuln.cve_id not in processed_vulns:
                         lost_value += getattr(asset, 'business_value', 10000)
                         processed_vulns.add(vuln.cve_id)
+        
         value_preserved = total_business_value - lost_value
-        value_reward = value_preserved / total_business_value if total_business_value > 0 else 0.0
-        roi = (value_preserved - patch_cost) / patch_cost if patch_cost > 0 else 0.0
-        roi_reward = roi / 10.0  # normalize
-        patch_reward = 1.0 - (patch_count / 50.0)  # prefer fewer patches
-        # Count unpatched critical vulns
+        
+        # STABILIZED REWARD COMPONENTS with capping and normalization
+        
+        # 1. Value preservation reward (normalized and capped)
+        value_reward = min(value_preserved / total_business_value, 1.0) if total_business_value > 0 else 0.0
+        
+        # 2. ROI reward (capped to prevent extreme values)
+        roi = (value_preserved - patch_cost) / max(patch_cost, 1.0) if patch_cost > 0 else 0.0
+        roi_reward = max(-1.0, min(1.0, roi / 5.0))  # Cap ROI between -1 and 1
+        
+        # 3. Patch efficiency reward (encourage moderate patching)
+        optimal_patches = 3  # Target 3 patches per episode
+        patch_efficiency = 1.0 - abs(patch_count - optimal_patches) / optimal_patches
+        patch_reward = max(0.0, patch_efficiency)
+        
+        # 4. Critical vulnerability penalty (normalized)
         unpatched_critical = sum(
-            1 for asset in state.system.assets for comp in asset.components for vuln in comp.vulnerabilities
+            1 for asset in state.system.assets 
+            for comp in asset.components 
+            for vuln in comp.vulnerabilities
             if not vuln.is_patched and getattr(vuln, 'cvss', 0) >= 9.0
         )
-        critical_penalty = unpatched_critical / 50.0  # normalize
-        patch_cost_penalty = patch_cost / 10000.0
-        value_loss_penalty = (total_business_value - value_preserved) / total_business_value if total_business_value > 0 else 0.0
+        total_critical = sum(
+            1 for asset in state.system.assets 
+            for comp in asset.components 
+            for vuln in comp.vulnerabilities
+            if getattr(vuln, 'cvss', 0) >= 9.0
+        )
+        critical_penalty = (unpatched_critical / max(total_critical, 1)) if total_critical > 0 else 0.0
+        
+        # 5. Cost efficiency penalty (normalized)
+        max_reasonable_cost = total_business_value * 0.1  # 10% of business value
+        cost_penalty = min(patch_cost / max_reasonable_cost, 1.0) if max_reasonable_cost > 0 else 0.0
+        
+        # 6. Compromise penalty (normalized)
         compromised_assets = sum(1 for asset in state.system.assets if asset.is_compromised)
         total_assets = len(state.system.assets)
-        compromised_assets_penalty = compromised_assets / total_assets if total_assets > 0 else 0.0
+        compromise_penalty = compromised_assets / total_assets if total_assets > 0 else 0.0
+        
+        # 7. Proactive defense bonus (reward early patching)
+        proactive_bonus = 0.1 if patch_count > 0 and compromise_penalty < 0.2 else 0.0
+        
+        # BALANCED REWARD CALCULATION (all components normalized to [-1, 1])
         reward = (
-            0.20 * value_reward
-            + 0.20 * roi_reward
-            + 0.10 * patch_reward
-            - 0.50 * critical_penalty
-            - 0.10 * patch_cost_penalty
-            - 0.30 * value_loss_penalty
-            - 0.20 * compromised_assets_penalty
+            0.30 * value_reward          # Increased: Main objective
+            + 0.20 * roi_reward          # Balanced: Cost effectiveness  
+            + 0.15 * patch_reward        # Increased: Encourage activity
+            + 0.10 * proactive_bonus     # New: Reward proactive defense
+            - 0.25 * critical_penalty    # Reduced: Less harsh
+            - 0.15 * cost_penalty        # Increased: Cost awareness
+            - 0.20 * compromise_penalty  # Reduced: Less harsh
         )
-        print(f"[RL Reward Debug] value_reward={value_reward:.3f}, roi_reward={roi_reward:.3f}, patch_reward={patch_reward:.3f}, critical_penalty={critical_penalty:.3f}, patch_cost_penalty={patch_cost_penalty:.3f}, value_loss_penalty={value_loss_penalty:.3f}, compromised_assets_penalty={compromised_assets_penalty:.3f}, reward={reward:.3f}")
+        
+        # Final reward capping to prevent extreme values
+        reward = max(-2.0, min(2.0, reward))
+        
+        # Enhanced debug logging
+        print(f"[Stabilized Reward] value={value_reward:.3f}, roi={roi_reward:.3f}, "
+              f"patch_eff={patch_reward:.3f}, proactive={proactive_bonus:.3f}, "
+              f"critical_pen={critical_penalty:.3f}, cost_pen={cost_penalty:.3f}, "
+              f"compromise_pen={compromise_penalty:.3f}, final={reward:.3f}")
+        
         return reward
 
     def _calculate_adaptive_weights(self, state: State, current_step: int, total_steps: int, silent_mode: bool) -> Dict[str, float]:
@@ -300,8 +379,13 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
 
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
 
+        # Update learning parameters
+        if hasattr(self, 'last_reward'):
+            patch_count = len(getattr(self, '_last_patch_list', []))
+            self._update_learning_parameters(self.last_reward, patch_count)
+
         if not silent_mode:
-            print(f"RL Weights (Step {current_step}, Episode {self.episode_count}): {', '.join([f'{k}={v:.2f}' for k, v in weights.items()])}")
+            print(f"RL Weights (Step {current_step}, Episode {getattr(self, 'episode_count', 0)}): {', '.join([f'{k}={v:.2f}' for k, v in weights.items()])}")
             print(f"State: {current_state}, Action: {action_idx}, Epsilon: {self.epsilon:.2f}")
 
         if current_step % 5 == 0:
@@ -341,7 +425,9 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         normalized_cvss = vuln_data['cvss'] / 10.0
         impact = vuln_data['business_value'] * normalized_cvss
 
-        risk_to_cost = self.cost_calculator.calculate_risk_to_cost_ratio(vuln, self.state, asset, component.id, self._cost_cache)
+        # Use self.state if state is not defined in this scope
+        current_state = self.state
+        risk_to_cost = self.cost_calculator.calculate_risk_to_cost_ratio(vuln, current_state.system, asset, component.id)
 
         score = (likelihood * impact / vuln_data['patch_cost'] if vuln_data['patch_cost'] > 0 else 0.0) * (
             1.0 - w['risk_to_cost_weight']) + risk_to_cost * w['risk_to_cost_weight']
@@ -494,6 +580,7 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         self.total_patch_cost += total_cost
         self.total_patch_count += len(patch_list)
         self.last_reward = self._calculate_reward(state, total_cost, len(patch_list))
+        self._last_patch_list = patch_list  # Store for learning parameter update
 
         print(f"\n{self.name} - Step {current_step} Summary:")
         print(f"  Vulnerabilities patched: {len(patch_list)}")
@@ -534,3 +621,65 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         self._unpatched_vulns_cache = None
 
         return patch_list
+
+    def _enhance_scoring_with_attack_prediction(self, vuln_data, score):
+        asset = vuln_data['asset']
+        is_adjacent_to_compromise = self._is_adjacent_to_compromised_asset(asset)
+        is_high_value = getattr(asset, 'business_value', 0) > 7000
+        enables_lateral_movement = vuln_data.get('has_exploit', False) and vuln_data.get('cvss', 0) >= 7.0
+        boost_factor = 1.0
+        if is_adjacent_to_compromise:
+            boost_factor *= 1.5
+        if is_high_value:
+            boost_factor *= 1.3
+        if enables_lateral_movement:
+            boost_factor *= 1.4
+        return score * boost_factor
+
+    def _adjust_learning_parameters(self):
+        if self.recent_rewards is not None and len(self.recent_rewards) >= 10:
+            avg_recent_reward = sum(self.recent_rewards[-10:]) / 10
+            if avg_recent_reward < -0.5:
+                self.learning_rate = min(0.15, self.learning_rate * 1.1)
+                self.epsilon = min(0.3, self.epsilon * 1.1)
+            elif avg_recent_reward > 0.2:
+                self.learning_rate = max(0.05, self.learning_rate * 0.95)
+                self.epsilon = max(self.epsilon_min, self.epsilon * 0.98)
+
+    def _is_adjacent_to_compromised_asset(self, asset):
+        # Dummy implementation: always return False unless you have attack graph adjacency logic
+        # Replace with real logic if available
+        return False
+
+    def _update_learning_parameters(self, reward, patch_count):
+        """
+        Adaptively adjust learning parameters based on performance
+        """
+        self.recent_rewards.append(reward)
+        self.recent_patch_counts.append(patch_count)
+        
+        # Keep only recent performance
+        if len(self.recent_rewards) > self.performance_window:
+            self.recent_rewards.pop(0)
+            self.recent_patch_counts.pop(0)
+        
+        if len(self.recent_rewards) >= 10:
+            avg_reward = sum(self.recent_rewards[-10:]) / 10
+            avg_patches = sum(self.recent_patch_counts[-10:]) / 10
+            reward_volatility = np.std(self.recent_rewards[-10:])
+            
+            # Adjust learning rate based on stability
+            if reward_volatility > 1.0:  # High volatility
+                self.learning_rate = max(0.02, self.learning_rate * 0.95)
+                print(f"High volatility detected, reducing learning rate to {self.learning_rate:.3f}")
+            
+            # Adjust exploration based on performance
+            if avg_reward < 0 and avg_patches < 1:  # Poor performance
+                self.epsilon = min(0.4, self.epsilon * 1.05)
+                print(f"Poor performance, increasing exploration to {self.epsilon:.3f}")
+            elif avg_reward > 0.5 and reward_volatility < 0.5:  # Good stable performance
+                self.epsilon = max(self.epsilon_min, self.epsilon * 0.99)
+
+    def can_recognize_zero_day(self) -> bool:
+        """RL Adaptive Threat Intelligence strategy can recognize zero-day vulnerabilities."""
+        return True
