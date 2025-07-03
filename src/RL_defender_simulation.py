@@ -273,15 +273,17 @@ def main():
                        help='Defender budget')
     parser.add_argument('--attacker_budget', type=float, default=15000,
                        help='Attacker budget')
-    parser.add_argument('--output_dir', type=str, default='src/rl_defender_training_results',
+    parser.add_argument('--output_dir', type=str, default='rl_defender_training_results',
                        help='Output directory for results')
     parser.add_argument('--verbose', action='store_true',
                        help='Verbose output')
 
     args = parser.parse_args()
 
-    # Create output directory
-    os.makedirs(args.output_dir, exist_ok=True)
+    # Always resolve output_dir relative to project root
+    project_root = os.path.abspath(os.path.dirname(__file__))  # Use src directory, not project root
+    output_dir = os.path.join(project_root, args.output_dir) if not os.path.isabs(args.output_dir) else args.output_dir
+    os.makedirs(output_dir, exist_ok=True)
 
     # Run training
     summary = train_rl_defender(
@@ -290,7 +292,7 @@ def main():
         num_steps=args.num_steps,
         defender_budget=args.defender_budget,
         attacker_budget=args.attacker_budget,
-        output_dir=args.output_dir,
+        output_dir=output_dir,
         verbose=args.verbose
     )
 

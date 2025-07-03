@@ -56,11 +56,22 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         self.performance_window = 20
         self.episode_count = 0
         
-        # Improved state bins for better discretization
+        # ENHANCED: Threat Intelligence Integration
+        self.threat_intel_features = {
+            'asset_threat_levels': {},
+            'exploit_attempt_history': {},
+            'technique_frequency': {},
+            'compromise_sequence': [],
+            'attack_observations': []
+        }
+        
+        # ENHANCED: Improved state bins with threat intelligence features
         self.state_bins = {
             'compromise_rate': [0.0, 0.05, 0.15, 0.30, 1.0],
             'unpatched_critical': [0, 3, 8, 15, 50],  # More granular
-            'budget_remaining': [0.0, 0.15, 0.35, 0.60, 1.0]
+            'budget_remaining': [0.0, 0.15, 0.35, 0.60, 1.0],
+            'threat_level': [0.0, 0.3, 0.6, 0.8, 1.0],  # NEW: Threat intelligence level
+            'attack_frequency': [0, 1, 3, 6, 10]  # NEW: Recent attack frequency
         }
         self.weight_configs = [
             # Configuration 0: Balanced defensive approach
@@ -263,7 +274,70 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         budget_fraction = remaining_budget / self.defender_budget if self.defender_budget > 0 else 0.0
         budget_bin = np.digitize(budget_fraction, self.state_bins['budget_remaining'], right=True) - 1
 
-        return (compromise_bin, unpatched_bin, budget_bin)
+        # ENHANCED: Threat Intelligence Features
+        threat_level_bin = self._calculate_threat_level_bin(state)
+        attack_frequency_bin = self._calculate_attack_frequency_bin()
+
+        return (compromise_bin, unpatched_bin, budget_bin, threat_level_bin, attack_frequency_bin)
+
+    def _calculate_threat_level_bin(self, state: State) -> int:
+        """Calculate threat level bin based on asset threat levels and attack patterns."""
+        if not self.threat_intel_features['asset_threat_levels']:
+            return 0  # No threat intelligence data available
+        
+        # Calculate average threat level across all assets
+        threat_levels = list(self.threat_intel_features['asset_threat_levels'].values())
+        avg_threat_level = np.mean(threat_levels) if threat_levels else 0.0
+        
+        # Bin the threat level
+        threat_bin = np.digitize(avg_threat_level, self.state_bins['threat_level'], right=True) - 1
+        return int(max(0, min(len(self.state_bins['threat_level']) - 1, threat_bin)))
+
+    def _calculate_attack_frequency_bin(self) -> int:
+        """Calculate attack frequency bin based on recent attack observations."""
+        recent_attacks = len(self.threat_intel_features['attack_observations'])
+        
+        # Bin the attack frequency
+        frequency_bin = np.digitize(recent_attacks, self.state_bins['attack_frequency'], right=True) - 1
+        return int(max(0, min(len(self.state_bins['attack_frequency']) - 1, frequency_bin)))
+
+    def update_threat_intelligence_features(self, threat_intel_strategy):
+        """Update threat intelligence features from a ThreatIntelligenceStrategy instance."""
+        if hasattr(threat_intel_strategy, 'asset_threat_levels'):
+            self.threat_intel_features['asset_threat_levels'] = threat_intel_strategy.asset_threat_levels.copy()
+        
+        if hasattr(threat_intel_strategy, 'exploit_attempt_history'):
+            self.threat_intel_features['exploit_attempt_history'] = threat_intel_strategy.exploit_attempt_history.copy()
+        
+        if hasattr(threat_intel_strategy, 'technique_frequency'):
+            self.threat_intel_features['technique_frequency'] = threat_intel_strategy.technique_frequency.copy()
+        
+        if hasattr(threat_intel_strategy, 'compromise_sequence'):
+            self.threat_intel_features['compromise_sequence'] = threat_intel_strategy.compromise_sequence.copy()
+        
+        if hasattr(threat_intel_strategy, 'attack_observations'):
+            self.threat_intel_features['attack_observations'] = threat_intel_strategy.attack_observations.copy()
+
+    def _calculate_threat_intel_priority(self, asset_id: str, vuln_key: str) -> float:
+        """Calculate threat intelligence priority score for a vulnerability."""
+        priority = 0.0
+        
+        # Asset threat level contribution
+        asset_threat = self.threat_intel_features['asset_threat_levels'].get(asset_id, 0.3)
+        priority += asset_threat * 0.4  # 40% weight for asset threat level
+        
+        # Exploit attempt history contribution
+        exploit_data = self.threat_intel_features['exploit_attempt_history'].get(vuln_key, {'attempts': 0, 'successes': 0})
+        if exploit_data['attempts'] > 0:
+            success_rate = exploit_data['successes'] / exploit_data['attempts']
+            priority += success_rate * 0.3  # 30% weight for exploit success rate
+            priority += min(exploit_data['attempts'] / 5.0, 1.0) * 0.2  # 20% weight for attempt frequency
+        
+        # Compromise sequence contribution
+        if asset_id in self.threat_intel_features['compromise_sequence']:
+            priority += 0.1  # 10% bonus for assets in compromise sequence
+        
+        return min(priority, 1.0)  # Cap at 1.0
 
     def _calculate_reward(self, state: State, patch_cost: float, patch_count: int) -> float:
         """
@@ -328,12 +402,21 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         # 7. Proactive defense bonus (reward early patching)
         proactive_bonus = 0.1 if patch_count > 0 and compromise_penalty < 0.2 else 0.0
         
+        # 8. ENHANCED: Threat Intelligence Awareness Bonus
+        threat_intel_bonus = 0.0
+        if self.threat_intel_features['asset_threat_levels']:
+            # Reward for patching high-threat assets
+            high_threat_assets = sum(1 for level in self.threat_intel_features['asset_threat_levels'].values() if level > 0.7)
+            if high_threat_assets > 0:
+                threat_intel_bonus = 0.05  # Small bonus for threat intelligence awareness
+        
         # BALANCED REWARD CALCULATION (all components normalized to [-1, 1])
         reward = (
             0.30 * value_reward          # Increased: Main objective
             + 0.20 * roi_reward          # Balanced: Cost effectiveness  
             + 0.15 * patch_reward        # Increased: Encourage activity
             + 0.10 * proactive_bonus     # New: Reward proactive defense
+            + 0.05 * threat_intel_bonus  # ENHANCED: Threat intelligence awareness
             - 0.25 * critical_penalty    # Reduced: Less harsh
             - 0.15 * cost_penalty        # Increased: Cost awareness
             - 0.20 * compromise_penalty  # Reduced: Less harsh
@@ -407,12 +490,14 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
             'max_business_value': 10000,
             'exploit_boost_factor': 2.8,
             'action_window_size': 10,
+            'zero_day_multiplier': 5.0  # NEW: Massive boost for zero-days
         }
 
         vuln = vuln_data['vulnerability']
         asset = vuln_data['asset']
         component = vuln_data['component']
         vuln_key = vuln_data['vuln_key']
+        is_zero_day = vuln_data.get('is_zero_day', False)
 
         likelihood_weights = {
             'cvss_weight': w['cvss_weight'],
@@ -425,13 +510,49 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         normalized_cvss = vuln_data['cvss'] / 10.0
         impact = vuln_data['business_value'] * normalized_cvss
 
-        # Use self.state if state is not defined in this scope
         current_state = self.state
         risk_to_cost = self.cost_calculator.calculate_risk_to_cost_ratio(vuln, current_state.system, asset, component.id)
 
-        score = (likelihood * impact / vuln_data['patch_cost'] if vuln_data['patch_cost'] > 0 else 0.0) * (
+        # ENHANCED: Threat Intelligence Integration in Scoring
+        threat_intel_boost = 1.0
+        
+        # Apply threat intelligence priority boost
+        threat_intel_priority = vuln_data.get('threat_intel_priority', 0.0)
+        if threat_intel_priority > 0.5:  # High threat intelligence priority
+            threat_intel_boost = 1.0 + threat_intel_priority * 0.5  # Up to 1.5x boost
+            if not silent_mode:
+                print(f"🎯 THREAT INTEL BOOST: {vuln_key} priority={threat_intel_priority:.2f}, boost={threat_intel_boost:.2f}x")
+        
+        # Apply asset threat level boost
+        asset_threat_level = vuln_data.get('asset_threat_level', 0.3)
+        if asset_threat_level > 0.7:  # High threat asset
+            asset_boost = 1.0 + asset_threat_level * 0.3  # Up to 1.3x boost
+            threat_intel_boost *= asset_boost
+            if not silent_mode:
+                print(f"🔥 HIGH THREAT ASSET: {vuln_key} threat_level={asset_threat_level:.2f}, boost={asset_boost:.2f}x")
+        
+        # Apply exploit attempt boost
+        exploit_attempts = vuln_data.get('exploit_attempts', 0)
+        if exploit_attempts > 0:
+            exploit_boost = 1.0 + min(exploit_attempts / 3.0, 1.0) * 0.4  # Up to 1.4x boost
+            threat_intel_boost *= exploit_boost
+            if not silent_mode:
+                print(f"⚡ EXPLOIT ATTEMPT BOOST: {vuln_key} attempts={exploit_attempts}, boost={exploit_boost:.2f}x")
+        
+        # Base score calculation
+        base_score = (likelihood * impact / vuln_data['patch_cost'] if vuln_data['patch_cost'] > 0 else 0.0) * (
             1.0 - w['risk_to_cost_weight']) + risk_to_cost * w['risk_to_cost_weight']
 
+        # Apply threat intelligence boost
+        base_score *= threat_intel_boost
+
+        # CRITICAL: Apply massive boost for zero-day vulnerabilities
+        if is_zero_day:
+            base_score *= c['zero_day_multiplier']
+            if not silent_mode:
+                print(f"🚨 ZERO-DAY BOOST: {vuln_key} score boosted by {c['zero_day_multiplier']}x")
+
+        # Apply attacker action boost
         if self._attacker_actions:
             window_size = min(c['action_window_size'], len(self._attacker_actions))
             recent_actions = self._attacker_actions[-window_size:] if window_size > 0 else []
@@ -439,16 +560,18 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                 if action.get('vuln_id') == vuln_key and action.get('exploit_success', False):
                     if not silent_mode:
                         logger.debug(f"Vulnerability {vuln_key} recently exploited - boosting priority by {c['exploit_boost_factor']}x")
-                    score *= c['exploit_boost_factor']
+                    base_score *= c['exploit_boost_factor']
 
         vuln_data['_scoring_info'] = {
-            'score': score,
-            'top_factor': 'risk_to_cost_weight' if w['risk_to_cost_weight'] * risk_to_cost > max(
+            'score': base_score,
+            'is_zero_day': is_zero_day,
+            'zero_day_boost_applied': is_zero_day,
+            'top_factor': 'zero_day' if is_zero_day else ('risk_to_cost_weight' if w['risk_to_cost_weight'] * risk_to_cost > max(
                 likelihood_weights['cvss_weight'] * normalized_cvss,
                 likelihood_weights['epss_weight'] * vuln_data['epss'],
                 likelihood_weights['exploit_weight'] * (1.0 if vuln_data['has_exploit'] else 0.0),
                 likelihood_weights['ransomware_weight'] * (1.0 if vuln_data['is_ransomware'] else 0.0)
-            ) else 'cvss_weight',
+            ) else 'cvss_weight'),
             'normalized_cvss': normalized_cvss,
             'epss': vuln_data.get('epss', 0.0),
             'has_exploit': vuln_data['has_exploit'],
@@ -461,11 +584,14 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         }
 
         if not silent_mode:
-            logger.debug(f"Vuln {vuln_key}: Score={score:.2f}, Risk-to-Cost={risk_to_cost:.2f}, Top Factor={vuln_data['_scoring_info']['top_factor']}")
-        return score
+            zero_day_info = " [ZERO-DAY]" if is_zero_day else ""
+            logger.debug(f"Vuln {vuln_key}{zero_day_info}: Score={base_score:.2f}, Risk-to-Cost={risk_to_cost:.2f}")
+        
+        return base_score
 
     def _prepare_vulnerability_data(self, state: State, step_budget: float) -> List[Dict]:
         unpatched_vulns = self._get_unpatched_vulnerabilities(state, verbose=False)
+        zero_days_found = 0  # Track zero-day discoveries
 
         vuln_data_list = []
         for vuln, asset, component in unpatched_vulns:
@@ -473,10 +599,17 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
             if vuln.is_patched or vuln_key in self._patched_vulns:
                 continue
 
+            # CRITICAL: Check for zero-day vulnerabilities and prioritize them
+            is_zero_day = self.is_zero_day_vulnerability(vuln)
+            if is_zero_day:
+                zero_days_found += 1
+                print(f"🚨 ZERO-DAY DETECTED: {vuln_key} - HIGH PRIORITY!")
+
             vuln_info = self._cost_cache['vulnerability_info'].get(vuln_key, {})
             patch_cost = self._cost_cache['patch_costs'].get(vuln_key, 200.0)
 
-            if patch_cost > step_budget:
+            # MODIFIED: Allow zero-days even if they exceed step budget (emergency)
+            if patch_cost > step_budget and not is_zero_day:
                 continue
 
             exploit_cost = self._cost_cache.get('exploit_costs', {}).get(vuln_key, 0.0)
@@ -485,6 +618,12 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                 getattr(asset, 'business_value', getattr(asset, 'criticality_level', 3) * 5000))
             roi = self._cost_cache.get('roi', {}).get(vuln_key, 0.0)
 
+            # ENHANCED: Add threat intelligence features
+            asset_id = str(asset.asset_id)
+            asset_threat_level = self.threat_intel_features['asset_threat_levels'].get(asset_id, 0.3)
+            exploit_attempts = self.threat_intel_features['exploit_attempt_history'].get(vuln_key, {'attempts': 0, 'successes': 0})
+            is_in_compromise_sequence = asset_id in self.threat_intel_features['compromise_sequence']
+            
             vuln_data = {
                 'vulnerability': vuln,
                 'asset': asset,
@@ -501,10 +640,20 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                 'vuln_key': vuln_key,
                 'asset_name': asset.name,
                 'asset_id': asset.asset_id,
-                'component_id': component.id
+                'component_id': component.id,
+                'is_zero_day': is_zero_day,  # Add zero-day flag
+                # ENHANCED: Threat Intelligence Features
+                'asset_threat_level': asset_threat_level,
+                'exploit_attempts': exploit_attempts['attempts'],
+                'exploit_successes': exploit_attempts['successes'],
+                'is_in_compromise_sequence': is_in_compromise_sequence,
+                'threat_intel_priority': self._calculate_threat_intel_priority(asset_id, vuln_key)
             }
 
             vuln_data_list.append(vuln_data)
+
+        if zero_days_found > 0:
+            print(f"📊 Found {zero_days_found} zero-day vulnerabilities that RL can now see!")
 
         return vuln_data_list
 
@@ -525,6 +674,7 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
             print(f"No vulnerabilities to patch for step {current_step}")
             return []
 
+        # Score all vulnerabilities
         for vuln_data in vuln_data_list:
             score = self._adaptive_scoring_function(vuln_data, self._current_weights,
                                                    config={
@@ -532,59 +682,103 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                                                            getattr(asset, 'business_value', 0) for asset in state.system.assets)),
                                                        'exploit_boost_factor': 2.8,
                                                        'action_window_size': min(10, current_step),
+                                                       'zero_day_multiplier': 5.0  # Massive boost for zero-days
                                                    },
                                                    silent_mode=silent_mode)
             vuln_data['score'] = score
 
         self._recently_scored_vulns = {vd['vuln_key']: vd for vd in vuln_data_list}
-        vuln_data_list.sort(key=lambda x: x['score'], reverse=True)
+        
+        # CRITICAL: Separate zero-days for priority handling
+        zero_day_vulns = [vd for vd in vuln_data_list if vd.get('is_zero_day', False)]
+        regular_vulns = [vd for vd in vuln_data_list if not vd.get('is_zero_day', False)]
+        
+        # Sort both lists by score
+        zero_day_vulns.sort(key=lambda x: x['score'], reverse=True)
+        regular_vulns.sort(key=lambda x: x['score'], reverse=True)
+        
+        # Prioritize zero-days first, then regular vulns
+        prioritized_vulns = zero_day_vulns + regular_vulns
 
         patch_list = []
         total_cost = 0
         step_patched_vulns = set()
-        per_step_limit = 10  # Reduced but enforced
+        per_step_limit = 10
 
         if not silent_mode:
             print(f"\n{self.name} - Patching decisions for Step {current_step}:")
-            print(f"{'Vuln Key':<30} {'Asset':<20} {'CVSS':<6} {'Score':<10} {'Cost':<10} {'Decision':<15}")
-            print("-" * 80)
+            print(f"Zero-day vulnerabilities found: {len(zero_day_vulns)}")
+            print(f"{'Vuln Key':<30} {'Asset':<20} {'CVSS':<6} {'Score':<10} {'Cost':<10} {'Type':<10} {'Decision':<15}")
+            print("-" * 95)
 
-        for vuln_info in vuln_data_list:
+        # MANDATORY: Patch zero-days first (allow budget overflow for emergencies)
+        emergency_budget_used = 0.0
+        for vuln_info in zero_day_vulns:
             if vuln_info['vuln_key'] in step_patched_vulns or vuln_info['vuln_key'] in self._patched_vulns:
                 continue
 
             patch_cost = vuln_info['patch_cost']
-            decision = "SKIP (budget)"
+            # Allow emergency spending for zero-days up to 2x step budget
+            if total_cost + patch_cost <= step_budget * 2.0:
+                patch_list.append((vuln_info['vulnerability'], patch_cost))
+                total_cost += patch_cost
+                if total_cost > step_budget:
+                    emergency_budget_used += (total_cost - step_budget)
+                step_patched_vulns.add(vuln_info['vuln_key'])
+                decision = "EMERGENCY PATCH"
+                vuln_type = "ZERO-DAY"
+                
+                if not silent_mode:
+                    print(f"{vuln_info['vuln_key']:<30} {vuln_info['asset_name'][:20]:<20} {vuln_info['cvss']:<6} "
+                          f"{vuln_info['score']:<10.2f} ${patch_cost:<9.2f} {vuln_type:<10} {decision:<15}")
 
-            if total_cost + patch_cost <= step_budget and len(patch_list) < per_step_limit:
+        # Regular vulnerability patching
+        remaining_budget_for_regular = max(0, step_budget - total_cost + emergency_budget_used)
+        regular_patches_added = 0
+        
+        for vuln_info in regular_vulns:
+            if vuln_info['vuln_key'] in step_patched_vulns or vuln_info['vuln_key'] in self._patched_vulns:
+                continue
+            
+            if regular_patches_added >= per_step_limit:
+                break
+
+            patch_cost = vuln_info['patch_cost']
+            decision = "SKIP (budget)"
+            vuln_type = "REGULAR"
+
+            if total_cost + patch_cost <= step_budget:
                 patch_list.append((vuln_info['vulnerability'], patch_cost))
                 total_cost += patch_cost
                 step_patched_vulns.add(vuln_info['vuln_key'])
+                regular_patches_added += 1
                 decision = "PATCH"
 
             if not silent_mode:
                 print(f"{vuln_info['vuln_key']:<30} {vuln_info['asset_name'][:20]:<20} {vuln_info['cvss']:<6} "
-                      f"{vuln_info['score']:<10.2f} ${patch_cost:<9.2f} {decision:<15}")
+                      f"{vuln_info['score']:<10.2f} ${patch_cost:<9.2f} {vuln_type:<10} {decision:<15}")
 
-        # Ensure at least one patch if budget allows
-        if not patch_list and vuln_data_list and step_budget > min(vd['patch_cost'] for vd in vuln_data_list):
-            top_vuln = vuln_data_list[0]
+        # Minimum activity enforcement (only if no patches at all)
+        if not patch_list and prioritized_vulns and step_budget > min(vd['patch_cost'] for vd in prioritized_vulns):
+            top_vuln = prioritized_vulns[0]
             patch_cost = top_vuln['patch_cost']
             if patch_cost <= step_budget:
                 patch_list.append((top_vuln['vulnerability'], patch_cost))
                 total_cost += patch_cost
                 step_patched_vulns.add(top_vuln['vuln_key'])
                 if not silent_mode:
-                    print(f"Forced patch: {top_vuln['vuln_key']} (Cost: ${patch_cost:.2f})")
+                    print(f"MINIMUM ACTIVITY: {top_vuln['vuln_key']} (Cost: ${patch_cost:.2f})")
 
         self.total_patch_cost += total_cost
         self.total_patch_count += len(patch_list)
         self.last_reward = self._calculate_reward(state, total_cost, len(patch_list))
-        self._last_patch_list = patch_list  # Store for learning parameter update
+        self._last_patch_list = patch_list
 
         print(f"\n{self.name} - Step {current_step} Summary:")
-        print(f"  Vulnerabilities patched: {len(patch_list)}")
+        print(f"  Vulnerabilities patched: {len(patch_list)} (Zero-days: {len(zero_day_vulns)} found)")
         print(f"  Total patch cost: ${total_cost:.2f}")
+        if emergency_budget_used > 0:
+            print(f"  Emergency budget used: ${emergency_budget_used:.2f}")
         print(f"  Remaining step budget: ${step_budget - total_cost:.2f}")
         print(f"  Remaining total budget: ${remaining_budget - total_cost:.2f}")
         print(f"  Reward: {self.last_reward:.2f}")
@@ -593,13 +787,14 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
         print(f"  Total Patch Cost (Episode): ${self.total_patch_cost:.2f}")
         print("-" * 80)
 
+        # Update patching history
         try:
             for vuln, cost in patch_list:
                 matching_vulns = [vd for vd in vuln_data_list if vd['vulnerability'] == vuln]
                 if matching_vulns:
                     vuln_key = matching_vulns[0]['vuln_key']
-                    top_factor = self._recently_scored_vulns.get(vuln_key, {}).get('_scoring_info', {}).get(
-                        'top_factor', 'cvss_weight')
+                    is_zero_day = matching_vulns[0].get('is_zero_day', False)
+                    top_factor = 'zero_day' if is_zero_day else self._recently_scored_vulns.get(vuln_key, {}).get('_scoring_info', {}).get('top_factor', 'cvss_weight')
                 else:
                     vuln_key = f"{vuln.cve_id if hasattr(vuln, 'cve_id') else 'unknown'}:unknown:unknown"
                     top_factor = 'cvss_weight'
@@ -610,7 +805,8 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                     'cost': cost,
                     'success': True,
                     'downtime': 1.0,
-                    'top_factor': top_factor
+                    'top_factor': top_factor,
+                    'is_zero_day': is_zero_day if 'is_zero_day' in locals() else False
                 })
 
                 self._patched_vulns.add(vuln_key)
