@@ -7,6 +7,8 @@ import os
 import sys
 import copy
 from datetime import datetime
+import argparse
+import numpy as np
 
 # Add parent directory to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -159,36 +161,55 @@ def run_simulation_with_rl_defender(data_file: str, q_table_file: str, num_steps
     }
 
 def main():
-    """Example usage of trained RL defender."""
-    
-    # Example paths - adjust these to your actual file paths
-    data_file = "data/systemData/apt3_scenario_enriched.json"
-    q_table_file = "src/rl_defender_training_results/rl_training_20250616_142837/q_table.pkl"
-    
+    """Example usage of trained RL defender with CLI arguments."""
+    parser = argparse.ArgumentParser(description="Evaluate a trained RL defender on a scenario.")
+    parser.add_argument('--data_file', type=str, default="data/systemData/apt3_scenario_enriched.json", help='Path to system data file')
+    parser.add_argument('--q_table_file', type=str, default="src/rl_defender_training_results/rl_training_20250616_142837/q_table.pkl", help='Path to trained Q-table file')
+    parser.add_argument('--num_steps', type=int, default=20, help='Number of simulation steps')
+    parser.add_argument('--defender_budget', type=int, default=100000, help='Defender budget')
+    parser.add_argument('--attacker_budget', type=int, default=15000, help='Attacker budget')
+    parser.add_argument('--verbose', type=bool, default=True, help='Verbose output')
+    parser.add_argument('--num_episodes', type=int, default=1, help='Number of evaluation episodes to run')
+    args = parser.parse_args()
+
+    print("\nArguments used:")
+    for k, v in vars(args).items():
+        print(f"  {k}: {v}")
+
     # Check if files exist
-    if not os.path.exists(data_file):
-        print(f"Error: Data file not found: {data_file}")
-        print("Please update the data_file path in the script.")
+    if not os.path.exists(args.data_file):
+        print(f"Error: Data file not found: {args.data_file}")
+        print("Please update the data_file path in the script or provide --data_file.")
         return
-    
-    if not os.path.exists(q_table_file):
-        print(f"Error: Q-table file not found: {q_table_file}")
+    if not os.path.exists(args.q_table_file):
+        print(f"Error: Q-table file not found: {args.q_table_file}")
         print("Please train the RL defender first using RL_defender_simulation.py")
         print("Or update the q_table_file path to point to your trained model.")
         return
-    
-    # Run simulation with trained RL defender
-    results = run_simulation_with_rl_defender(
-        data_file=data_file,
-        q_table_file=q_table_file,
-        num_steps=20,
-        defender_budget=100000,
-        attacker_budget=15000,
-        verbose=True
-    )
-    
-    print(f"\nSimulation completed successfully!")
-    print(f"Results: {results}")
+
+    # Run simulation with trained RL defender for num_episodes
+    all_results = []
+    for ep in range(args.num_episodes):
+        if args.num_episodes > 1:
+            print(f"\n===== Evaluation Episode {ep+1}/{args.num_episodes} =====")
+        results = run_simulation_with_rl_defender(
+            data_file=args.data_file,
+            q_table_file=args.q_table_file,
+            num_steps=args.num_steps,
+            defender_budget=args.defender_budget,
+            attacker_budget=args.attacker_budget,
+            verbose=args.verbose if args.num_episodes == 1 else False
+        )
+        all_results.append(results)
+
+    if args.num_episodes > 1:
+        def mean_std(key):
+            vals = [r[key] for r in all_results]
+            return np.mean(vals), np.std(vals)
+        print("\n===== Summary over", args.num_episodes, "episodes =====")
+        for key in ['defender_patches','defender_cost','value_preserved','value_lost','assets_compromised','roi','attacker_success_rate','value_preservation_rate']:
+            mean, std = mean_std(key)
+            print(f"{key}: mean={mean:.2f}, std={std:.2f}")
 
 if __name__ == "__main__":
     main() 

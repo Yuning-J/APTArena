@@ -32,6 +32,8 @@ from classes.patching_strategies import (
     ThreatIntelligenceStrategy
 )
 from data_loader import load_data
+from classes.hybrid_strategy import HybridStrategy
+from src.RL_defender_strategy import RLAdaptiveThreatIntelligenceStrategy
 
 # Create visualization directory
 viz_dir = "visualization"
@@ -777,11 +779,12 @@ class APT3RTUSimulation:
                 self.attacker.strategic_manager.compromised_assets.add(target_asset_id)
                 self.attacker.strategic_manager.exploited_vulnerabilities.add(vuln_key)
                 if not hasattr(self.state, 'lateral_movement_targets'):
-                    self.state.lateral_movement_targets = set()
-                self.state.lateral_movement_targets.add(target_asset_id)
+                    self.state.lateral_movement_targets = []
+                if target_asset_id not in self.state.lateral_movement_targets:
+                    self.state.lateral_movement_targets.append(target_asset_id)
                 if not hasattr(self.state, 'lateral_movement_chain'):
-                    self.state.lateral_movement_chain = {}
-                self.state.lateral_movement_chain[target_asset_id] = current_position
+                    self.state.lateral_movement_chain = []
+                self.state.lateral_movement_chain.append((target_asset_id, current_position))
                 for sys_asset in self.state.system.assets:
                     if str(sys_asset.asset_id) == str(asset.asset_id):
                         sys_asset.mark_as_compromised(True)
@@ -958,13 +961,14 @@ class APT3RTUSimulation:
 
         # DEFENDER PHASE: Apply strategy-specific learning and patching
         for observation in attack_observations:
-            strategy.observe_attack_behavior(observation)
+            if hasattr(strategy, 'observe_attack_behavior'):
+                strategy.observe_attack_behavior(observation)
             if verbose:
                 print(
                     f"  Threat Intel: Observed attack - {observation.get('action_type')} on asset {observation.get('target_asset')} ({'successful' if observation.get('success') else 'failed'})")
 
         # Execute defender strategy
-        defender_actions = strategy(self.state, self._remaining_defender_budget, step, self.num_steps)
+        defender_actions = strategy.select_patches(self.state, self._remaining_defender_budget, step, self.num_steps)
         step_cost = 0.0
         applied_patches = []
 
@@ -1465,6 +1469,8 @@ class APT3RTUSimulation:
             'CVSS+Exploit': CVSSExploitAwareStrategy(),
             'Business Value': BusinessValueStrategy(),
             'Cost-Benefit': CostBenefitStrategy(),
+            'Threat Intelligence': ThreatIntelligenceStrategy(),
+            'RL Defender': RLAdaptiveThreatIntelligenceStrategy(),
             'Hybrid Defender': HybridStrategy(),
         }
         self.initialize_cost_cache()
@@ -1612,8 +1618,7 @@ class APT3RTUSimulation:
                 self.mitre_techniques_detected = set()
                 self.time_to_detection = {}
                 self.attack_disrupted = False
-                self.results = {k: [] if isinstance(v, list) else None if k == 'rtu_compromised_step' else v for k, v in
-                                self.results.items()}
+                self.results = {k: [] if isinstance(v, list) or v is None else v for k, v in self.results.items()}
                 self.results['attack_paths_used'] = []
                 self.attacker.attack_graph.build_attack_graph()
                 
@@ -1676,11 +1681,8 @@ class APT3RTUSimulation:
                 self.reset_exploit_status()
 
                 # Track initial threat intelligence state
-                initial_observations = 0
-                initial_threat_levels = {}
-                if True:
-                    initial_observations = len(strategy_obj.attack_observations)
-                    initial_threat_levels = dict(strategy_obj.asset_threat_levels)
+                initial_observations = len(strategy_obj.attack_observations) if hasattr(strategy_obj, 'attack_observations') else 0
+                initial_threat_levels = dict(strategy_obj.asset_threat_levels) if hasattr(strategy_obj, 'asset_threat_levels') else {}
 
                 # Run simulation steps
                 total_patch_cost = 0.0
@@ -1689,7 +1691,8 @@ class APT3RTUSimulation:
                 termination_reason = "campaign_horizon_elapsed"
                 
                 for step in range(num_steps):
-                    self.run_step(strategy_obj.select_patches, step, verbose)
+                    # Instead of passing select_patches, pass the full strategy object
+                    self.run_step(strategy_obj, step, verbose)
                     step_metrics = self.calculate_metrics(self.state, total_patch_cost, total_patches, verbose)
                     total_patch_cost += sum(self.results["dollar_costs"]["patch_costs"][-1:])
                     total_patches += len(self.results["patched_vulns"][-1:])
@@ -1738,8 +1741,8 @@ class APT3RTUSimulation:
                     'techniques_learned': 0
                 }
                 if True:
-                    final_observations = len(strategy_obj.attack_observations)
-                    final_threat_levels = dict(strategy_obj.asset_threat_levels)
+                    final_observations = len(strategy_obj.attack_observations) if hasattr(strategy_obj, 'attack_observations') else 0
+                    final_threat_levels = dict(strategy_obj.asset_threat_levels) if hasattr(strategy_obj, 'asset_threat_levels') else {}
                     threat_intel_metrics.update({
                         'observations_collected': final_observations,
                         'learning_adaptations': final_observations - initial_observations,
@@ -1748,9 +1751,9 @@ class APT3RTUSimulation:
                             final_threat_levels[asset_id] - initial_threat_levels.get(asset_id, 0.3)) > 0.1),
                         'predictions_made': len(strategy_obj.predict_next_targets()) if hasattr(strategy_obj,
                                                                                                 'predict_next_targets') else 0,
-                        'compromise_sequence_learned': len(strategy_obj.compromise_sequence),
-                        'exploit_attempts_tracked': len(strategy_obj.exploit_attempt_history),
-                        'techniques_learned': len(strategy_obj.technique_frequency)
+                        'compromise_sequence_learned': len(strategy_obj.compromise_sequence) if hasattr(strategy_obj, 'compromise_sequence') else 0,
+                        'exploit_attempts_tracked': len(strategy_obj.exploit_attempt_history) if hasattr(strategy_obj, 'exploit_attempt_history') else 0,
+                        'techniques_learned': len(strategy_obj.technique_frequency) if hasattr(strategy_obj, 'technique_frequency') else 0
                     })
 
                 # Calculate hybrid strategy specific metrics
@@ -2035,21 +2038,17 @@ class APT3RTUSimulation:
         for metric_name, (metric_key, metric_label, file_prefix) in metrics_to_plot.items():
             plt.figure(figsize=(12, 6))
             values = [aggregated_results[strategy_name]['run_statistics'][metric_key] for strategy_name in strategies]
-            bars = plt.bar(strategies.keys(),
-                           [np.mean([v for v in vals if v is not None]) if vals else 0.0 for vals in values],
-                           yerr=[np.std([v for v in vals if v is not None]) if vals else 0.0 for vals in values],
-                           color='skyblue', alpha=0.7, edgecolor='navy', capsize=5)
-            for bar, value in zip(bars,
-                                  [np.mean([v for v in vals if v is not None]) if vals else 0.0 for vals in values]):
+            # Filter out empty or all-None lists for bar plot
+            means = [np.mean([v for v in vals if v is not None]) if vals and any(v is not None for v in vals) else 0.0 for vals in values]
+            stds = [np.std([v for v in vals if v is not None]) if vals and any(v is not None for v in vals) else 0.0 for vals in values]
+            bars = plt.bar(strategies.keys(), means, yerr=stds, color='skyblue', alpha=0.7, edgecolor='navy', capsize=5)
+            for bar, value in zip(bars, means):
                 height = bar.get_height()
                 label = f'${value:,.0f}' if 'Value' in metric_name else f'{value:.1f}%' if 'Rate' in metric_name or 'Coverage' in metric_name else f'{value:.1f}'
-                plt.text(bar.get_x() + bar.get_width() / 2.,
-                         height + max([np.mean([v for v in vals if v is not None]) for vals in values]) * 0.01,
-                         label, ha='center', va='bottom', fontsize=10)
+                plt.text(bar.get_x() + bar.get_width() / 2., height + max(means) * 0.01 if max(means) > 0 else 0.1, label, ha='center', va='bottom', fontsize=10)
             plt.xlabel("Strategy", fontsize=12)
             plt.ylabel(metric_name, fontsize=12)
-            plt.title(f"Mean {metric_name} by Strategy (APT3 Enhanced, {num_trials} Trials)", fontsize=14,
-                      fontweight='bold')
+            plt.title(f"Mean {metric_name} by Strategy (APT3 Enhanced, {num_trials} Trials)", fontsize=14, fontweight='bold')
             plt.xticks(rotation=45, ha='right')
             plt.grid(axis='y', alpha=0.3)
             plt.tight_layout()
@@ -2057,32 +2056,48 @@ class APT3RTUSimulation:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
             plt.close()
             print(f"Saved {metric_name} bar plot to {save_path}")
+            # Violin plot with data validation
             plt.figure(figsize=(14, 8))
             num_strategies = len(strategies)
             positions = np.arange(num_strategies)
             labels = list(strategies.keys())
             data = [aggregated_results[strategy_name]['run_statistics'][metric_key] for strategy_name in strategies]
             valid_data = [[v for v in d if v is not None] for d in data]
-            if any(valid_data):
-                violin_parts = plt.violinplot([d for d in valid_data if d],
-                                              positions=[i for i, d in enumerate(valid_data) if d],
-                                              widths=0.15, showmeans=True)
-                for pc in violin_parts['bodies']:
-                    pc.set_facecolor('lightcoral')
-                    pc.set_edgecolor('darkred')
-                    pc.set_alpha(0.6)
-                plt.boxplot([d for d in valid_data if d], positions=[i for i, d in enumerate(valid_data) if d],
-                            widths=0.15, showfliers=True)
-                plt.xlabel('Strategy', fontsize=12)
-                plt.ylabel(metric_label, fontsize=12)
-                plt.title(f'Distribution of {metric_label} Across {num_trials} Trials per Strategy', fontsize=14)
-                plt.xticks(positions, labels, rotation=45, ha='right')
-                plt.grid(True, linestyle='--', alpha=0.7)
-                plt.tight_layout()
-                save_path = os.path.join(viz_dir, f"apt3_enhanced_{file_prefix}_distribution.png")
-                plt.savefig(save_path, dpi=300, bbox_inches='tight')
-                plt.close()
-                print(f"Saved {metric_name} distribution plot to {save_path}")
+            # Only keep non-empty lists
+            nonempty_indices = [i for i, d in enumerate(valid_data) if len(d) > 0]
+            if nonempty_indices:
+                plot_data = [valid_data[i] for i in nonempty_indices]
+                plot_positions = [i for i in nonempty_indices]
+                plot_labels = [labels[i] for i in nonempty_indices]
+                # Debug: print data types and lengths
+                print(f"[DEBUG] {metric_name} plot_data types: {[type(d) for d in plot_data]}")
+                print(f"[DEBUG] {metric_name} plot_data lengths: {[len(d) for d in plot_data]}")
+                # Ensure all entries are 1D lists of numbers
+                all_1d = all(isinstance(d, list) and all(isinstance(x, (int, float, np.integer, np.floating)) for x in d) for d in plot_data)
+                if not all_1d:
+                    print(f"Skipping {metric_name} violin plot: plot_data contains non-1D or non-numeric entries.")
+                else:
+                    try:
+                        violin_parts = plt.violinplot(plot_data, positions=plot_positions, widths=0.15, showmeans=True)
+                        for pc in violin_parts['bodies']:
+                            pc.set_facecolor('lightcoral')
+                            pc.set_edgecolor('darkred')
+                            pc.set_alpha(0.6)
+                        plt.boxplot(plot_data, positions=plot_positions, widths=0.15, showfliers=True)
+                        plt.xlabel('Strategy', fontsize=12)
+                        plt.ylabel(metric_label, fontsize=12)
+                        plt.title(f'Distribution of {metric_label} Across {num_trials} Trials per Strategy', fontsize=14)
+                        plt.xticks(plot_positions, plot_labels, rotation=45, ha='right')
+                        plt.grid(True, linestyle='--', alpha=0.7)
+                        plt.tight_layout()
+                        save_path = os.path.join(viz_dir, f"apt3_enhanced_{file_prefix}_distribution.png")
+                        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+                        plt.close()
+                        print(f"Saved {metric_name} distribution plot to {save_path}")
+                    except Exception as e:
+                        print(f"Skipping {metric_name} violin plot due to error: {e}")
+            else:
+                print(f"Skipping {metric_name} violin plot: no valid data to plot.")
         plt.figure(figsize=(12, 6))
         for strategy_name in strategies:
             unique_paths = list(path_usage[strategy_name].keys())
@@ -2118,9 +2133,12 @@ class APT3RTUSimulation:
         for strategy_name in strategies:
             rtu_times = [t for t in aggregated_results[strategy_name]['run_statistics']['time_to_rtu_compromise_runs']
                          if t is not None and t != num_steps + 1]
-            if rtu_times:
-                plt.violinplot([rtu_times], positions=[list(strategies.keys()).index(strategy_name)], widths=0.15,
-                               showmeans=True)
+            # Debug: print type and shape
+            print(f"[DEBUG] RTU times for {strategy_name}: type={type(rtu_times)}, length={len(rtu_times)}")
+            if rtu_times and all(isinstance(x, (int, float, np.integer, np.floating)) for x in rtu_times):
+                plt.violinplot([rtu_times], positions=[list(strategies.keys()).index(strategy_name)], widths=0.15, showmeans=True)
+            else:
+                print(f"Skipping RTU compromise violin plot for {strategy_name}: data is not a flat list of numbers.")
         plt.xlabel('Strategy', fontsize=12)
         plt.ylabel('Time to RTU Compromise (steps)', fontsize=12)
         plt.title(f'Distribution of Time to RTU Compromise Across {num_trials} Trials per Strategy', fontsize=14)
