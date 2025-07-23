@@ -1,0 +1,3715 @@
+{
+  "CWE-89": {
+    "capecs": [
+      "CAPEC-108",
+      "CAPEC-109",
+      "CAPEC-110",
+      "CAPEC-470",
+      "CAPEC-66",
+      "CAPEC-7"
+    ],
+    "mitre_techniques": [
+      "T1190",
+      "T1565.001",
+      "T1505.003"
+    ]
+  },
+  "CWE-306": {
+    "capecs": [
+      "CAPEC-12",
+      "CAPEC-166",
+      "CAPEC-216",
+      "CAPEC-36",
+      "CAPEC-62"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1133",
+      "T1199"
+    ]
+  },
+  "CWE-122": {
+    "capecs": [
+      "CAPEC-92"
+    ],
+    "mitre_techniques": [
+      "T1055"
+    ]
+  },
+  "CWE-352": {
+    "capecs": [
+      "CAPEC-111",
+      "CAPEC-462",
+      "CAPEC-467",
+      "CAPEC-62"
+    ],
+    "mitre_techniques": [
+      "T1189",
+      "T1566.002",
+      "T1199"
+    ]
+  },
+  "CWE-119": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-100",
+      "CAPEC-123",
+      "CAPEC-14",
+      "CAPEC-24",
+      "CAPEC-42",
+      "CAPEC-44",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-8",
+      "CAPEC-9"
+    ],
+    "mitre_techniques": [
+      "T1055",
+      "T1210",
+      "T1068"
+    ]
+  },
+  "CWE-120": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-100",
+      "CAPEC-14",
+      "CAPEC-24",
+      "CAPEC-42",
+      "CAPEC-44",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-67",
+      "CAPEC-8",
+      "CAPEC-9",
+      "CAPEC-92"
+    ],
+    "mitre_techniques": [
+      "T1055",
+      "T1210",
+      "T1068"
+    ]
+  },
+  "CWE-22": {
+    "capecs": [
+      "CAPEC-126",
+      "CAPEC-64",
+      "CAPEC-76",
+      "CAPEC-78",
+      "CAPEC-79"
+    ],
+    "mitre_techniques": [
+      "T1083",
+      "T1210",
+      "T1059.001"
+    ]
+  },
+  "CWE-1007": {
+    "capecs": [
+      "CAPEC-632"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1021": {
+    "capecs": [
+      "CAPEC-103",
+      "CAPEC-181",
+      "CAPEC-222",
+      "CAPEC-504",
+      "CAPEC-506",
+      "CAPEC-587",
+      "CAPEC-654"
+    ],
+    "mitre_techniques": [
+      "T1036.004",
+      "T1056",
+      "T1548.004"
+    ]
+  },
+  "CWE-1037": {
+    "capecs": [
+      "CAPEC-663"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-112": {
+    "capecs": [
+      "CAPEC-230",
+      "CAPEC-231"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-113": {
+    "capecs": [
+      "CAPEC-105",
+      "CAPEC-31",
+      "CAPEC-34",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": [
+      "T1539"
+    ]
+  },
+  "CWE-114": {
+    "capecs": [
+      "CAPEC-108",
+      "CAPEC-640"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1505.005",
+      "T1574.013",
+      "T1620"
+    ]
+  },
+  "CWE-116": {
+    "capecs": [
+      "CAPEC-104",
+      "CAPEC-73",
+      "CAPEC-81",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-117": {
+    "capecs": [
+      "CAPEC-268",
+      "CAPEC-81",
+      "CAPEC-93"
+    ],
+    "mitre_techniques": [
+      "T1562.008",
+      "T1070",
+      "T1562.003",
+      "T1562.002"
+    ]
+  },
+  "CWE-118": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-14",
+      "CAPEC-24",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-8",
+      "CAPEC-9"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1188": {
+    "capecs": [
+      "CAPEC-665"
+    ],
+    "mitre_techniques": [
+      "T1211",
+      "T1556",
+      "T1542.002"
+    ]
+  },
+  "CWE-1189": {
+    "capecs": [
+      "CAPEC-124"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1190": {
+    "capecs": [
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1191": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1192": {
+    "capecs": [
+      "CAPEC-113"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1193": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1204": {
+    "capecs": [
+      "CAPEC-20",
+      "CAPEC-97"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1209": {
+    "capecs": [
+      "CAPEC-121"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1220": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1221": {
+    "capecs": [
+      "CAPEC-166"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1222": {
+    "capecs": [
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1223": {
+    "capecs": [
+      "CAPEC-26"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1224": {
+    "capecs": [
+      "CAPEC-680"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1231": {
+    "capecs": [
+      "CAPEC-680"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1232": {
+    "capecs": [
+      "CAPEC-166"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1233": {
+    "capecs": [
+      "CAPEC-176",
+      "CAPEC-680"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1234": {
+    "capecs": [
+      "CAPEC-176"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1239": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-204",
+      "CAPEC-37",
+      "CAPEC-545"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555",
+      "T1552.004",
+      "T1555.001",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1119",
+      "T1602"
+    ]
+  },
+  "CWE-1240": {
+    "capecs": [
+      "CAPEC-97"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1241": {
+    "capecs": [
+      "CAPEC-97"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1242": {
+    "capecs": [
+      "CAPEC-212",
+      "CAPEC-36"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1243": {
+    "capecs": [
+      "CAPEC-116",
+      "CAPEC-545"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555.001"
+    ]
+  },
+  "CWE-1244": {
+    "capecs": [
+      "CAPEC-114"
+    ],
+    "mitre_techniques": [
+      "T1548"
+    ]
+  },
+  "CWE-1245": {
+    "capecs": [
+      "CAPEC-74"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1246": {
+    "capecs": [
+      "CAPEC-212"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1247": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1248": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-617": {
+    "capecs": [
+        "CAPEC-129"
+    ],
+    "mitre_techniques": [
+        "T1499"
+    ]
+},
+  "CWE-125": {
+    "capecs": [
+      "CAPEC-540"
+    ],
+    "mitre_techniques": ["T1005"]
+  },
+  "CWE-1252": {
+    "capecs": [
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1253": {
+    "capecs": [
+      "CAPEC-74"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1254": {
+    "capecs": [
+      "CAPEC-26"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1255": {
+    "capecs": [
+      "CAPEC-189"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1256": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1257": {
+    "capecs": [
+      "CAPEC-456",
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1258": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-204",
+      "CAPEC-37",
+      "CAPEC-545"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555",
+      "T1552.004",
+      "T1555.001",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1119",
+      "T1602"
+    ]
+  },
+  "CWE-1259": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-681"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1260": {
+    "capecs": [
+      "CAPEC-456",
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1262": {
+    "capecs": [
+      "CAPEC-680"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1263": {
+    "capecs": [
+      "CAPEC-401"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1264": {
+    "capecs": [
+      "CAPEC-233",
+      "CAPEC-663"
+    ],
+    "mitre_techniques": [
+      "T1548"
+    ]
+  },
+  "CWE-1265": {
+    "capecs": [
+      "CAPEC-74"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1266": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-37",
+      "CAPEC-545",
+      "CAPEC-546",
+      "CAPEC-675"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555",
+      "T1552.004",
+      "T1555.001",
+      "T1052",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1119",
+      "T1602"
+    ]
+  },
+  "CWE-1267": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-681"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1268": {
+    "capecs": [
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1269": {
+    "capecs": [
+      "CAPEC-439"
+    ],
+    "mitre_techniques": [
+      "T1195"
+    ]
+  },
+  "CWE-1270": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-633",
+      "CAPEC-681"
+    ],
+    "mitre_techniques": [
+      "T1134"
+    ]
+  },
+  "CWE-1271": {
+    "capecs": [
+      "CAPEC-74"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1272": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-37",
+      "CAPEC-545",
+      "CAPEC-546"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555",
+      "T1552.004",
+      "T1555.001",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1119",
+      "T1602"
+    ]
+  },
+  "CWE-1273": {
+    "capecs": [
+      "CAPEC-560"
+    ],
+    "mitre_techniques": [
+      "T1078"
+    ]
+  },
+  "CWE-1274": {
+    "capecs": [
+      "CAPEC-456",
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1275": {
+    "capecs": [
+      "CAPEC-62"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1277": {
+    "capecs": [
+      "CAPEC-682"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1278": {
+    "capecs": [
+      "CAPEC-188",
+      "CAPEC-37",
+      "CAPEC-545"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004",
+      "T1555.001"
+    ]
+  },
+  "CWE-1279": {
+    "capecs": [
+      "CAPEC-97"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-128": {
+    "capecs": [
+      "CAPEC-92"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1280": {
+    "capecs": [
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1281": {
+    "capecs": [
+      "CAPEC-212"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1282": {
+    "capecs": [
+      "CAPEC-458",
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1283": {
+    "capecs": [
+      "CAPEC-680"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1286": {
+    "capecs": [
+      "CAPEC-66",
+      "CAPEC-676"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-129": {
+    "capecs": [
+      "CAPEC-100"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1294": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-681"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1295": {
+    "capecs": [
+      "CAPEC-121"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1296": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-702"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1297": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1298": {
+    "capecs": [
+      "CAPEC-26"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1299": {
+    "capecs": [
+      "CAPEC-457",
+      "CAPEC-554"
+    ],
+    "mitre_techniques": [
+      "T1091",
+      "T1092"
+    ]
+  },
+  "CWE-130": {
+    "capecs": [
+      "CAPEC-47"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1300": {
+    "capecs": [
+      "CAPEC-189",
+      "CAPEC-699"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1301": {
+    "capecs": [
+      "CAPEC-37"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004"
+    ]
+  },
+  "CWE-1302": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-681"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1303": {
+    "capecs": [
+      "CAPEC-663"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1304": {
+    "capecs": [
+      "CAPEC-176"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-131": {
+    "capecs": [
+      "CAPEC-100",
+      "CAPEC-47"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1310": {
+    "capecs": [
+      "CAPEC-682"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1311": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180",
+      "CAPEC-233"
+    ],
+    "mitre_techniques": [
+      "T1574.010",
+      "T1548"
+    ]
+  },
+  "CWE-1312": {
+    "capecs": [
+      "CAPEC-456",
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1313": {
+    "capecs": [
+      "CAPEC-121"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1314": {
+    "capecs": [
+      "CAPEC-1"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1315": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1316": {
+    "capecs": [
+      "CAPEC-456",
+      "CAPEC-679"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1317": {
+    "capecs": [
+      "CAPEC-122"
+    ],
+    "mitre_techniques": [
+      "T1548"
+    ]
+  },
+  "CWE-1318": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1319": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1320": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1321": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-180",
+      "CAPEC-77"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1322": {
+    "capecs": [
+      "CAPEC-25"
+    ],
+    "mitre_techniques": [
+      "T1499.004"
+    ]
+  },
+  "CWE-1323": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-167",
+      "CAPEC-545"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555",
+      "T1555.001",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1119",
+      "T1602"
+    ]
+  },
+  "CWE-1325": {
+    "capecs": [
+      "CAPEC-130"
+    ],
+    "mitre_techniques": [
+      "T1499.003"
+    ]
+  },
+  "CWE-1326": {
+    "capecs": [
+      "CAPEC-679",
+      "CAPEC-68"
+    ],
+    "mitre_techniques": [
+      "T1553.002"
+    ]
+  },
+  "CWE-1327": {
+    "capecs": [
+      "CAPEC-1"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-1328": {
+    "capecs": [
+      "CAPEC-176"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1330": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-37",
+      "CAPEC-545"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1555",
+      "T1552.004",
+      "T1555.001",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1119",
+      "T1602"
+    ]
+  },
+  "CWE-1331": {
+    "capecs": [
+      "CAPEC-124"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1332": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1333": {
+    "capecs": [
+      "CAPEC-492"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1334": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1338": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-134": {
+    "capecs": [
+      "CAPEC-135",
+      "CAPEC-67"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1342": {
+    "capecs": [
+      "CAPEC-696"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-1351": {
+    "capecs": [
+      "CAPEC-624",
+      "CAPEC-625"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-138": {
+    "capecs": [
+      "CAPEC-105",
+      "CAPEC-15",
+      "CAPEC-34"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-140": {
+    "capecs": [
+      "CAPEC-15"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-146": {
+    "capecs": [
+      "CAPEC-15",
+      "CAPEC-6"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-147": {
+    "capecs": [
+      "CAPEC-460"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-149": {
+    "capecs": [
+      "CAPEC-468"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-15": {
+    "capecs": [
+      "CAPEC-13",
+      "CAPEC-146",
+      "CAPEC-176",
+      "CAPEC-203",
+      "CAPEC-270",
+      "CAPEC-271",
+      "CAPEC-579",
+      "CAPEC-69",
+      "CAPEC-76",
+      "CAPEC-77"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1574.007",
+      "T1562.003",
+      "T1547.001",
+      "T1547.014",
+      "T1547.004",
+      "T1647",
+      "T1112"
+    ]
+  },
+  "CWE-150": {
+    "capecs": [
+      "CAPEC-134",
+      "CAPEC-41",
+      "CAPEC-81",
+      "CAPEC-93"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-154": {
+    "capecs": [
+      "CAPEC-15"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-157": {
+    "capecs": [
+      "CAPEC-15"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-158": {
+    "capecs": [
+      "CAPEC-52",
+      "CAPEC-53"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-162": {
+    "capecs": [
+      "CAPEC-635"
+    ],
+    "mitre_techniques": [
+      "T1036.007"
+    ]
+  },
+  "CWE-172": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-267",
+      "CAPEC-3",
+      "CAPEC-52",
+      "CAPEC-53",
+      "CAPEC-64",
+      "CAPEC-71",
+      "CAPEC-72",
+      "CAPEC-78",
+      "CAPEC-80"
+    ],
+    "mitre_techniques": [
+      "T1027"
+    ]
+  },
+  "CWE-173": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-267",
+      "CAPEC-3",
+      "CAPEC-4",
+      "CAPEC-52",
+      "CAPEC-53",
+      "CAPEC-64",
+      "CAPEC-71",
+      "CAPEC-72",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-80"
+    ],
+    "mitre_techniques": [
+      "T1027"
+    ]
+  },
+  "CWE-176": {
+    "capecs": [
+      "CAPEC-71"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-177": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-468",
+      "CAPEC-64",
+      "CAPEC-72"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-179": {
+    "capecs": [
+      "CAPEC-3",
+      "CAPEC-43",
+      "CAPEC-71"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-180": {
+    "capecs": [
+      "CAPEC-267",
+      "CAPEC-3",
+      "CAPEC-71",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-80"
+    ],
+    "mitre_techniques": [
+      "T1027"
+    ]
+  },
+  "CWE-181": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-267",
+      "CAPEC-3",
+      "CAPEC-43",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-80"
+    ],
+    "mitre_techniques": [
+      "T1027"
+    ]
+  },
+  "CWE-183": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-3",
+      "CAPEC-43",
+      "CAPEC-71"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-184": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-15",
+      "CAPEC-182",
+      "CAPEC-3",
+      "CAPEC-43",
+      "CAPEC-6",
+      "CAPEC-71",
+      "CAPEC-73",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-185": {
+    "capecs": [
+      "CAPEC-15",
+      "CAPEC-6",
+      "CAPEC-79"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-190": {
+    "capecs": [
+      "CAPEC-92"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-196": {
+    "capecs": [
+      "CAPEC-92"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-20": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-101",
+      "CAPEC-104",
+      "CAPEC-108",
+      "CAPEC-109",
+      "CAPEC-110",
+      "CAPEC-120",
+      "CAPEC-13",
+      "CAPEC-135",
+      "CAPEC-136",
+      "CAPEC-14",
+      "CAPEC-153",
+      "CAPEC-182",
+      "CAPEC-209",
+      "CAPEC-22",
+      "CAPEC-23",
+      "CAPEC-230",
+      "CAPEC-231",
+      "CAPEC-24",
+      "CAPEC-250",
+      "CAPEC-261",
+      "CAPEC-267",
+      "CAPEC-28",
+      "CAPEC-3",
+      "CAPEC-31",
+      "CAPEC-42",
+      "CAPEC-43",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-473",
+      "CAPEC-52",
+      "CAPEC-53",
+      "CAPEC-588",
+      "CAPEC-63",
+      "CAPEC-64",
+      "CAPEC-664",
+      "CAPEC-67",
+      "CAPEC-7",
+      "CAPEC-71",
+      "CAPEC-72",
+      "CAPEC-73",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-8",
+      "CAPEC-80",
+      "CAPEC-81",
+      "CAPEC-83",
+      "CAPEC-85",
+      "CAPEC-88",
+      "CAPEC-9"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1574.006",
+      "T1574.007",
+      "T1553.002",
+      "T1036.001",
+      "T1027",
+      "T1562.003"
+    ]
+  },
+  "CWE-200": {
+    "capecs": [
+      "CAPEC-116",
+      "CAPEC-13",
+      "CAPEC-169",
+      "CAPEC-22",
+      "CAPEC-224",
+      "CAPEC-285",
+      "CAPEC-287",
+      "CAPEC-290",
+      "CAPEC-291",
+      "CAPEC-292",
+      "CAPEC-293",
+      "CAPEC-294",
+      "CAPEC-295",
+      "CAPEC-296",
+      "CAPEC-297",
+      "CAPEC-298",
+      "CAPEC-299",
+      "CAPEC-300",
+      "CAPEC-301",
+      "CAPEC-302",
+      "CAPEC-303",
+      "CAPEC-304",
+      "CAPEC-305",
+      "CAPEC-306",
+      "CAPEC-307",
+      "CAPEC-308",
+      "CAPEC-309",
+      "CAPEC-310",
+      "CAPEC-312",
+      "CAPEC-313",
+      "CAPEC-317",
+      "CAPEC-318",
+      "CAPEC-319",
+      "CAPEC-320",
+      "CAPEC-321",
+      "CAPEC-322",
+      "CAPEC-323",
+      "CAPEC-324",
+      "CAPEC-325",
+      "CAPEC-326",
+      "CAPEC-327",
+      "CAPEC-328",
+      "CAPEC-329",
+      "CAPEC-330",
+      "CAPEC-472",
+      "CAPEC-497",
+      "CAPEC-508",
+      "CAPEC-573",
+      "CAPEC-574",
+      "CAPEC-575",
+      "CAPEC-576",
+      "CAPEC-577",
+      "CAPEC-59",
+      "CAPEC-60",
+      "CAPEC-616",
+      "CAPEC-643",
+      "CAPEC-646",
+      "CAPEC-651",
+      "CAPEC-79"
+    ],
+    "mitre_techniques": [
+      "T1018",
+      "T1550.004",
+      "T1049",
+      "T1007",
+      "T1083",
+      "T1574.006",
+      "T1595",
+      "T1574.007",
+      "T1615",
+      "T1562.003",
+      "T1124",
+      "T1082",
+      "T1217",
+      "T1069",
+      "T1120",
+      "T1033",
+      "T1592",
+      "T1016",
+      "T1046",
+      "T1111",
+      "T1135",
+      "T1134.001",
+      "T1057",
+      "T1036.005",
+      "T1087",
+      "T1590"
+    ]
+  },
+  "CWE-201": {
+    "capecs": [
+      "CAPEC-12",
+      "CAPEC-217",
+      "CAPEC-612",
+      "CAPEC-613",
+      "CAPEC-618",
+      "CAPEC-619",
+      "CAPEC-621",
+      "CAPEC-622",
+      "CAPEC-623"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-203": {
+    "capecs": [
+      "CAPEC-189"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-204": {
+    "capecs": [
+      "CAPEC-331",
+      "CAPEC-332",
+      "CAPEC-541",
+      "CAPEC-580"
+    ],
+    "mitre_techniques": [
+      "T1082",
+      "T1592.002"
+    ]
+  },
+  "CWE-205": {
+    "capecs": [
+      "CAPEC-541",
+      "CAPEC-580"
+    ],
+    "mitre_techniques": [
+      "T1082",
+      "T1592.002"
+    ]
+  },
+  "CWE-208": {
+    "capecs": [
+      "CAPEC-462",
+      "CAPEC-541",
+      "CAPEC-580"
+    ],
+    "mitre_techniques": [
+      "T1082",
+      "T1592.002"
+    ]
+  },
+  "CWE-911": {
+    "capecs": [
+        "CAPEC-123"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-193": {
+    "capecs": [
+        "CAPEC-100"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-787": {
+    "capecs": [
+        "CAPEC-100"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-209": {
+    "capecs": [
+      "CAPEC-215",
+      "CAPEC-463",
+      "CAPEC-54",
+      "CAPEC-7"
+    ],
+    "mitre_techniques": [
+        "T1592",
+        "T1082"
+    ]
+  },
+  "CWE-212": {
+    "capecs": [
+      "CAPEC-168"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-221": {
+    "capecs": [
+      "CAPEC-81"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-226": {
+    "capecs": [
+      "CAPEC-37"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004"
+    ]
+  },
+  "CWE-23": {
+    "capecs": [
+      "CAPEC-139",
+      "CAPEC-76"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-233": {
+    "capecs": [
+      "CAPEC-39"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-235": {
+    "capecs": [
+      "CAPEC-460"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-241": {
+    "capecs": [
+      "CAPEC-48"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-250": {
+    "capecs": [
+      "CAPEC-104",
+      "CAPEC-470",
+      "CAPEC-69"
+    ],
+    "mitre_techniques": ["T1068"]
+  },
+  "CWE-257": {
+    "capecs": [
+      "CAPEC-49"
+    ],
+    "mitre_techniques": [
+      "T1110.001"
+    ]
+  },
+  "CWE-261": {
+    "capecs": [
+      "CAPEC-55"
+    ],
+    "mitre_techniques": [
+      "T1110.002"
+    ]
+  },
+  "CWE-262": {
+    "capecs": [
+      "CAPEC-16",
+      "CAPEC-49",
+      "CAPEC-509",
+      "CAPEC-55",
+      "CAPEC-555",
+      "CAPEC-560",
+      "CAPEC-561",
+      "CAPEC-565",
+      "CAPEC-600",
+      "CAPEC-652",
+      "CAPEC-653",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1110.001",
+      "T1021.002",
+      "T1110.002",
+      "T1078.001",
+      "T1133",
+      "T1558",
+      "T1021",
+      "T1110.003",
+      "T1110.004",
+      "T1558.003",
+      "T1114.002"
+    ]
+  },
+  "CWE-263": {
+    "capecs": [
+      "CAPEC-16",
+      "CAPEC-49",
+      "CAPEC-509",
+      "CAPEC-55",
+      "CAPEC-555",
+      "CAPEC-560",
+      "CAPEC-561",
+      "CAPEC-565",
+      "CAPEC-600",
+      "CAPEC-652",
+      "CAPEC-653",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1110.001",
+      "T1021.002",
+      "T1110.002",
+      "T1078.001",
+      "T1133",
+      "T1558",
+      "T1021",
+      "T1110.003",
+      "T1110.004",
+      "T1558.003",
+      "T1114.002"
+    ]
+  },
+  "CWE-267": {
+    "capecs": [
+      "CAPEC-58",
+      "CAPEC-634",
+      "CAPEC-637",
+      "CAPEC-643",
+      "CAPEC-648"
+    ],
+    "mitre_techniques": [
+      "T1135",
+      "T1113",
+      "T1125",
+      "T1115",
+      "T1513",
+      "T1123"
+    ]
+  },
+  "CWE-269": {
+    "capecs": [
+      "CAPEC-122",
+      "CAPEC-233",
+      "CAPEC-58"
+    ],
+    "mitre_techniques": [
+      "T1548"
+    ]
+  },
+  "CWE-270": {
+    "capecs": [
+      "CAPEC-17",
+      "CAPEC-30",
+      "CAPEC-35"
+    ],
+    "mitre_techniques": [
+      "T1027.009",
+      "T1055.003",
+      "T1564.009",
+      "T1027.006",
+      "T1574.005",
+      "T1574.010"
+    ]
+  },
+  "CWE-272": {
+    "capecs": [
+      "CAPEC-17",
+      "CAPEC-35",
+      "CAPEC-76"
+    ],
+    "mitre_techniques": [
+      "T1027.009",
+      "T1564.009",
+      "T1027.006",
+      "T1574.005",
+      "T1574.010"
+    ]
+  },
+  "CWE-276": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-127",
+      "CAPEC-81"
+    ],
+    "mitre_techniques": [
+      "T1574.010",
+      "T1083"
+    ]
+  },
+  "CWE-279": {
+    "capecs": [
+      "CAPEC-81"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-282": {
+    "capecs": [
+      "CAPEC-17",
+      "CAPEC-35"
+    ],
+    "mitre_techniques": [
+      "T1027.009",
+      "T1564.009",
+      "T1027.006",
+      "T1574.005",
+      "T1574.010"
+    ]
+  },
+  "CWE-284": {
+    "capecs": [
+      "CAPEC-19",
+      "CAPEC-441",
+      "CAPEC-478",
+      "CAPEC-479",
+      "CAPEC-502",
+      "CAPEC-503",
+      "CAPEC-536",
+      "CAPEC-546",
+      "CAPEC-550",
+      "CAPEC-551",
+      "CAPEC-552",
+      "CAPEC-556",
+      "CAPEC-558",
+      "CAPEC-562",
+      "CAPEC-563",
+      "CAPEC-564",
+      "CAPEC-578"
+    ],
+    "mitre_techniques": [
+      "T1543.003",
+      "T1546.001",
+      "T1547.006",
+      "T1562.007",
+      "T1543.004",
+      "T1505.005",
+      "T1574.011",
+      "T1542.003",
+      "T1546.004",
+      "T1556.006",
+      "T1553.004",
+      "T1543",
+      "T1014",
+      "T1562.009",
+      "T1547",
+      "T1027.009",
+      "T1543.001",
+      "T1080",
+      "T1562.008",
+      "T1037",
+      "T1562.001",
+      "T1546.008",
+      "T1562.002",
+      "T1562.004",
+      "T1546.016"
+    ]
+  },
+  "CWE-285": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-104",
+      "CAPEC-127",
+      "CAPEC-13",
+      "CAPEC-17",
+      "CAPEC-39",
+      "CAPEC-402",
+      "CAPEC-45",
+      "CAPEC-5",
+      "CAPEC-51",
+      "CAPEC-59",
+      "CAPEC-60",
+      "CAPEC-647",
+      "CAPEC-668",
+      "CAPEC-76",
+      "CAPEC-77",
+      "CAPEC-87"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1005",
+      "T1550.004",
+      "T1574.007",
+      "T1134.001",
+      "T1552.002",
+      "T1565.002",
+      "T1574.005",
+      "T1012",
+      "T1562.003",
+      "T1574.010",
+      "T1083"
+    ]
+  },
+  "CWE-287": {
+    "capecs": [
+      "CAPEC-114",
+      "CAPEC-115",
+      "CAPEC-151",
+      "CAPEC-194",
+      "CAPEC-22",
+      "CAPEC-57",
+      "CAPEC-593",
+      "CAPEC-633",
+      "CAPEC-650",
+      "CAPEC-94"
+    ],
+    "mitre_techniques": [
+      "T1550.001",
+      "T1557",
+      "T1563",
+      "T1185",
+      "T1505.003",
+      "T1040",
+      "T1134",
+      "T1548"
+    ]
+  },
+  "CWE-288": {
+    "capecs": [
+      "CAPEC-127",
+      "CAPEC-665"
+    ],
+    "mitre_techniques": [
+      "T1211",
+      "T1556",
+      "T1542.002",
+      "T1083"
+    ]
+  },
+  "CWE-290": {
+    "capecs": [
+      "CAPEC-21",
+      "CAPEC-22",
+      "CAPEC-459",
+      "CAPEC-461",
+      "CAPEC-473",
+      "CAPEC-476",
+      "CAPEC-59",
+      "CAPEC-60",
+      "CAPEC-667",
+      "CAPEC-94"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1528",
+      "T1557",
+      "T1550.004",
+      "T1134.001",
+      "T1553.002",
+      "T1036.001",
+      "T1134"
+    ]
+  },
+  "CWE-291": {
+    "capecs": [
+      "CAPEC-4"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-294": {
+    "capecs": [
+      "CAPEC-102",
+      "CAPEC-509",
+      "CAPEC-555",
+      "CAPEC-561",
+      "CAPEC-60",
+      "CAPEC-644",
+      "CAPEC-645",
+      "CAPEC-652",
+      "CAPEC-701",
+      "CAPEC-94"
+    ],
+    "mitre_techniques": [
+      "T1021.002",
+      "T1557",
+      "T1550.004",
+      "T1133",
+      "T1134.001",
+      "T1550.003",
+      "T1550.002",
+      "T1558",
+      "T1021",
+      "T1558.003",
+      "T1114.002"
+    ]
+  },
+  "CWE-295": {
+    "capecs": [
+      "CAPEC-459",
+      "CAPEC-475"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-300": {
+    "capecs": [
+      "CAPEC-466",
+      "CAPEC-57",
+      "CAPEC-589",
+      "CAPEC-590",
+      "CAPEC-612",
+      "CAPEC-613",
+      "CAPEC-615",
+      "CAPEC-662",
+      "CAPEC-94"
+    ],
+    "mitre_techniques": [
+      "T1185",
+      "T1557",
+      "T1040"
+    ]
+  },
+  "CWE-301": {
+    "capecs": [
+      "CAPEC-90"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-302": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-13",
+      "CAPEC-21",
+      "CAPEC-274",
+      "CAPEC-31",
+      "CAPEC-39",
+      "CAPEC-45",
+      "CAPEC-77"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1574.006",
+      "T1528",
+      "T1574.007",
+      "T1134",
+      "T1562.003"
+    ]
+  },
+  "CWE-303": {
+    "capecs": [
+      "CAPEC-90"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-307": {
+    "capecs": [
+      "CAPEC-16",
+      "CAPEC-49",
+      "CAPEC-560",
+      "CAPEC-565",
+      "CAPEC-600",
+      "CAPEC-652",
+      "CAPEC-653"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1110.001",
+      "T1558",
+      "T1110.003",
+      "T1110.004"
+    ]
+  },
+  "CWE-308": {
+    "capecs": [
+      "CAPEC-16",
+      "CAPEC-49",
+      "CAPEC-509",
+      "CAPEC-55",
+      "CAPEC-555",
+      "CAPEC-560",
+      "CAPEC-561",
+      "CAPEC-565",
+      "CAPEC-600",
+      "CAPEC-644",
+      "CAPEC-645",
+      "CAPEC-652",
+      "CAPEC-653",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1110.001",
+      "T1021.002",
+      "T1110.002",
+      "T1550.003",
+      "T1133",
+      "T1558",
+      "T1078.001",
+      "T1550.002",
+      "T1021",
+      "T1110.003",
+      "T1110.004",
+      "T1558.003",
+      "T1114.002"
+    ]
+  },
+  "CWE-309": {
+    "capecs": [
+      "CAPEC-16",
+      "CAPEC-49",
+      "CAPEC-509",
+      "CAPEC-55",
+      "CAPEC-555",
+      "CAPEC-560",
+      "CAPEC-561",
+      "CAPEC-565",
+      "CAPEC-600",
+      "CAPEC-652",
+      "CAPEC-653",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1110.001",
+      "T1021.002",
+      "T1110.002",
+      "T1078.001",
+      "T1133",
+      "T1558",
+      "T1021",
+      "T1110.003",
+      "T1110.004",
+      "T1558.003",
+      "T1114.002"
+    ]
+  },
+  "CWE-311": {
+    "capecs": [
+      "CAPEC-157",
+      "CAPEC-158",
+      "CAPEC-204",
+      "CAPEC-31",
+      "CAPEC-37",
+      "CAPEC-383",
+      "CAPEC-384",
+      "CAPEC-385",
+      "CAPEC-386",
+      "CAPEC-387",
+      "CAPEC-388",
+      "CAPEC-477",
+      "CAPEC-609",
+      "CAPEC-65"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1005",
+      "T1056.004",
+      "T1552.004",
+      "T1040",
+      "T1111"
+    ]
+  },
+  "CWE-312": {
+    "capecs": [
+      "CAPEC-37"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004"
+    ]
+  },
+  "CWE-314": {
+    "capecs": [
+      "CAPEC-37"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004"
+    ]
+  },
+  "CWE-315": {
+    "capecs": [
+      "CAPEC-31",
+      "CAPEC-37",
+      "CAPEC-39",
+      "CAPEC-74"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1005",
+      "T1552.004"
+    ]
+  },
+  "CWE-318": {
+    "capecs": [
+      "CAPEC-37",
+      "CAPEC-65"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004",
+      "T1040"
+    ]
+  },
+  "CWE-319": {
+    "capecs": [
+      "CAPEC-102",
+      "CAPEC-117",
+      "CAPEC-383",
+      "CAPEC-477",
+      "CAPEC-65"
+    ],
+    "mitre_techniques": [
+      "T1040",
+      "T1056.004"
+    ]
+  },
+  "CWE-325": {
+    "capecs": [
+      "CAPEC-68"
+    ],
+    "mitre_techniques": [
+      "T1553.002"
+    ]
+  },
+  "CWE-326": {
+    "capecs": [
+      "CAPEC-112",
+      "CAPEC-192",
+      "CAPEC-20"
+    ],
+    "mitre_techniques": [
+      "T1110"
+    ]
+  },
+  "CWE-327": {
+    "capecs": [
+      "CAPEC-20",
+      "CAPEC-459",
+      "CAPEC-473",
+      "CAPEC-475",
+      "CAPEC-608",
+      "CAPEC-614",
+      "CAPEC-97"
+    ],
+    "mitre_techniques": [
+      "T1553.002",
+      "T1036.001"
+    ]
+  },
+  "CWE-328": {
+    "capecs": [
+      "CAPEC-461",
+      "CAPEC-68"
+    ],
+    "mitre_techniques": [
+      "T1553.002"
+    ]
+  },
+  "CWE-330": {
+    "capecs": [
+      "CAPEC-112",
+      "CAPEC-485",
+      "CAPEC-59"
+    ],
+    "mitre_techniques": [
+      "T1110",
+      "T1552.004"
+    ]
+  },
+  "CWE-331": {
+    "capecs": [
+      "CAPEC-59"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-345": {
+    "capecs": [
+      "CAPEC-111",
+      "CAPEC-141",
+      "CAPEC-142",
+      "CAPEC-148",
+      "CAPEC-218",
+      "CAPEC-384",
+      "CAPEC-385",
+      "CAPEC-386",
+      "CAPEC-387",
+      "CAPEC-388",
+      "CAPEC-665",
+      "CAPEC-701"
+    ],
+    "mitre_techniques": [
+      "T1556",
+      "T1584.002",
+      "T1211",
+      "T1557.002",
+      "T1491",
+      "T1542.002"
+    ]
+  },
+  "CWE-346": {
+    "capecs": [
+      "CAPEC-111",
+      "CAPEC-141",
+      "CAPEC-142",
+      "CAPEC-160",
+      "CAPEC-21",
+      "CAPEC-384",
+      "CAPEC-385",
+      "CAPEC-386",
+      "CAPEC-387",
+      "CAPEC-388",
+      "CAPEC-510",
+      "CAPEC-59",
+      "CAPEC-60",
+      "CAPEC-75",
+      "CAPEC-76",
+      "CAPEC-89"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1528",
+      "T1550.004",
+      "T1134.001",
+      "T1584.002",
+      "T1557.002",
+      "T1134"
+    ]
+  },
+  "CWE-347": {
+    "capecs": [
+      "CAPEC-463",
+      "CAPEC-475"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-348": {
+    "capecs": [
+      "CAPEC-141",
+      "CAPEC-142",
+      "CAPEC-73",
+      "CAPEC-76",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": [
+      "T1557.002",
+      "T1584.002"
+    ]
+  },
+  "CWE-349": {
+    "capecs": [
+      "CAPEC-141",
+      "CAPEC-142",
+      "CAPEC-75"
+    ],
+    "mitre_techniques": [
+      "T1557.002",
+      "T1584.002"
+    ]
+  },
+  "CWE-350": {
+    "capecs": [
+      "CAPEC-142",
+      "CAPEC-275",
+      "CAPEC-73",
+      "CAPEC-89"
+    ],
+    "mitre_techniques": [
+      "T1584.002"
+    ]
+  },
+  "CWE-353": {
+    "capecs": [
+      "CAPEC-13",
+      "CAPEC-14",
+      "CAPEC-389",
+      "CAPEC-39",
+      "CAPEC-665",
+      "CAPEC-74",
+      "CAPEC-75"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1556",
+      "T1542.002",
+      "T1574.007",
+      "T1211",
+      "T1562.003"
+    ]
+  },
+  "CWE-354": {
+    "capecs": [
+      "CAPEC-145",
+      "CAPEC-463",
+      "CAPEC-75"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-359": {
+    "capecs": [
+      "CAPEC-464",
+      "CAPEC-467",
+      "CAPEC-498",
+      "CAPEC-508"
+    ],
+    "mitre_techniques": [
+      "T1606.001"
+    ]
+  },
+  "CWE-36": {
+    "capecs": [
+      "CAPEC-597"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-362": {
+    "capecs": [
+      "CAPEC-26",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": [
+        "T1068",
+        "T1203"
+    ]
+  },
+  "CWE-363": {
+    "capecs": [
+      "CAPEC-26"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-366": {
+    "capecs": [
+      "CAPEC-26",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-367": {
+    "capecs": [
+      "CAPEC-27",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": [
+        "T1068",
+        "T1548"
+    ]
+  },
+  "CWE-368": {
+    "capecs": [
+      "CAPEC-26",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-370": {
+    "capecs": [
+      "CAPEC-26",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-372": {
+    "capecs": [
+      "CAPEC-140",
+      "CAPEC-74"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-377": {
+    "capecs": [
+      "CAPEC-149",
+      "CAPEC-155"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-384": {
+    "capecs": [
+      "CAPEC-196",
+      "CAPEC-21",
+      "CAPEC-31",
+      "CAPEC-39",
+      "CAPEC-59",
+      "CAPEC-60",
+      "CAPEC-61"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1606",
+      "T1528",
+      "T1134.002",
+      "T1550.004",
+      "T1134.001",
+      "T1134.003",
+      "T1134"
+    ]
+  },
+  "CWE-385": {
+    "capecs": [
+      "CAPEC-462"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-400": {
+    "capecs": [
+      "CAPEC-147",
+      "CAPEC-227",
+      "CAPEC-492"
+    ],
+    "mitre_techniques": [
+      "T1499"
+    ]
+  },
+  "CWE-404": {
+    "capecs": [
+      "CAPEC-125",
+      "CAPEC-130",
+      "CAPEC-131",
+      "CAPEC-494",
+      "CAPEC-495",
+      "CAPEC-496",
+      "CAPEC-666"
+    ],
+    "mitre_techniques": [
+      "T1498.001",
+      "T1499.001",
+      "T1499.003",
+      "T1499"
+    ]
+  },
+  "CWE-41": {
+    "capecs": [
+      "CAPEC-3"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-412": {
+    "capecs": [
+      "CAPEC-25"
+    ],
+    "mitre_techniques": [
+      "T1499.004"
+    ]
+  },
+  "CWE-419": {
+    "capecs": [
+      "CAPEC-383"
+    ],
+    "mitre_techniques": [
+      "T1056.004"
+    ]
+  },
+  "CWE-424": {
+    "capecs": [
+      "CAPEC-127",
+      "CAPEC-554"
+    ],
+    "mitre_techniques": [
+      "T1083"
+    ]
+  },
+  "CWE-425": {
+    "capecs": [
+      "CAPEC-127",
+      "CAPEC-143",
+      "CAPEC-144",
+      "CAPEC-668",
+      "CAPEC-87"
+    ],
+    "mitre_techniques": [
+      "T1565.002",
+      "T1083"
+    ]
+  },
+  "CWE-426": {
+    "capecs": [
+      "CAPEC-38"
+    ],
+    "mitre_techniques": [
+      "T1574.007",
+      "T1574.009"
+    ]
+  },
+  "CWE-427": {
+    "capecs": [
+      "CAPEC-38",
+      "CAPEC-471"
+    ],
+    "mitre_techniques": [
+      "T1574.004",
+      "T1574.009",
+      "T1574.001",
+      "T1574.007",
+      "T1574.008"
+    ]
+  },
+  "CWE-430": {
+    "capecs": [
+      "CAPEC-11"
+    ],
+    "mitre_techniques": [
+      "T1036.006"
+    ]
+  },
+  "CWE-434": {
+    "capecs": [
+      "CAPEC-1"
+    ],
+    "mitre_techniques": [
+      "T1574.010"
+    ]
+  },
+  "CWE-436": {
+    "capecs": [
+      "CAPEC-105",
+      "CAPEC-273",
+      "CAPEC-34"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-441": {
+    "capecs": [
+      "CAPEC-219",
+      "CAPEC-465"
+    ],
+    "mitre_techniques": [
+      "T1090.001"
+    ]
+  },
+  "CWE-444": {
+    "capecs": [
+      "CAPEC-273",
+      "CAPEC-33"
+    ],
+    "mitre_techniques": [
+      "T1190",
+      "T1565"
+    ]
+  },
+  "CWE-451": {
+    "capecs": [
+      "CAPEC-154",
+      "CAPEC-163",
+      "CAPEC-164",
+      "CAPEC-173",
+      "CAPEC-98"
+    ],
+    "mitre_techniques": [
+      "T1598.002",
+      "T1534",
+      "T1566",
+      "T1566.001",
+      "T1598.003",
+      "T1566.003",
+      "T1598.001",
+      "T1598",
+      "T1566.002"
+    ]
+  },
+  "CWE-46": {
+    "capecs": [
+      "CAPEC-649"
+    ],
+    "mitre_techniques": [
+      "T1036.006"
+    ]
+  },
+  "CWE-470": {
+    "capecs": [
+      "CAPEC-138"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-471": {
+    "capecs": [
+      "CAPEC-384",
+      "CAPEC-385",
+      "CAPEC-386",
+      "CAPEC-387",
+      "CAPEC-388"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-472": {
+    "capecs": [
+      "CAPEC-146",
+      "CAPEC-226",
+      "CAPEC-31",
+      "CAPEC-39"
+    ],
+    "mitre_techniques": [
+      "T1539"
+    ]
+  },
+  "CWE-473": {
+    "capecs": [
+      "CAPEC-77"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-488": {
+    "capecs": [
+      "CAPEC-59",
+      "CAPEC-60"
+    ],
+    "mitre_techniques": [
+      "T1550.004",
+      "T1134.001"
+    ]
+  },
+  "CWE-489": {
+    "capecs": [
+      "CAPEC-121",
+      "CAPEC-661"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-494": {
+    "capecs": [
+      "CAPEC-184",
+      "CAPEC-185",
+      "CAPEC-186",
+      "CAPEC-187",
+      "CAPEC-533",
+      "CAPEC-538",
+      "CAPEC-657",
+      "CAPEC-662",
+      "CAPEC-691",
+      "CAPEC-692",
+      "CAPEC-693",
+      "CAPEC-695"
+    ],
+    "mitre_techniques": [
+      "T1072",
+      "T1185",
+      "T1195.002",
+      "T1195.001"
+    ]
+  },
+  "CWE-497": {
+    "capecs": [
+      "CAPEC-170",
+      "CAPEC-694"
+    ],
+    "mitre_techniques": [
+      "T1614"
+    ]
+  },
+  "CWE-502": {
+    "capecs": [
+      "CAPEC-586"
+    ],
+    "mitre_techniques": ["T1190"]
+  },
+  "CWE-506": {
+    "capecs": [
+      "CAPEC-442",
+      "CAPEC-448",
+      "CAPEC-636"
+    ],
+    "mitre_techniques": [
+      "T1027.009",
+      "T1218.001",
+      "T1195.002",
+      "T1195.001",
+      "T1027.003",
+      "T1001.002",
+      "T1221",
+      "T1027.004"
+    ]
+  },
+  "CWE-507": {
+    "capecs": [
+      "CAPEC-698"
+    ],
+    "mitre_techniques": [
+      "T1176",
+      "T1505.004"
+    ]
+  },
+  "CWE-514": {
+    "capecs": [
+      "CAPEC-463"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-521": {
+    "capecs": [
+      "CAPEC-112",
+      "CAPEC-16",
+      "CAPEC-49",
+      "CAPEC-509",
+      "CAPEC-55",
+      "CAPEC-555",
+      "CAPEC-561",
+      "CAPEC-565",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1110.001",
+      "T1558.003",
+      "T1021.002",
+      "T1110.002",
+      "T1078.001",
+      "T1133",
+      "T1021",
+      "T1110.003",
+      "T1110",
+      "T1114.002"
+    ]
+  },
+  "CWE-522": {
+    "capecs": [
+      "CAPEC-102",
+      "CAPEC-474",
+      "CAPEC-50",
+      "CAPEC-509",
+      "CAPEC-551",
+      "CAPEC-555",
+      "CAPEC-560",
+      "CAPEC-561",
+      "CAPEC-600",
+      "CAPEC-644",
+      "CAPEC-645",
+      "CAPEC-652",
+      "CAPEC-653"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1021.002",
+      "T1550.003",
+      "T1552.004",
+      "T1133",
+      "T1558",
+      "T1550.002",
+      "T1021",
+      "T1110.004",
+      "T1543",
+      "T1558.003",
+      "T1114.002"
+    ]
+  },
+  "CWE-523": {
+    "capecs": [
+      "CAPEC-102"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-524": {
+    "capecs": [
+      "CAPEC-204"
+    ],
+    "mitre_techniques": [
+      "T1005"
+    ]
+  },
+  "CWE-525": {
+    "capecs": [
+      "CAPEC-37"
+    ],
+    "mitre_techniques": [
+      "T1005",
+      "T1552.004"
+    ]
+  },
+  "CWE-532": {
+    "capecs": [
+      "CAPEC-215"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-538": {
+    "capecs": [
+      "CAPEC-95"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-539": {
+    "capecs": [
+      "CAPEC-21",
+      "CAPEC-31",
+      "CAPEC-39",
+      "CAPEC-59",
+      "CAPEC-60"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1528",
+      "T1550.004",
+      "T1134.001",
+      "T1134"
+    ]
+  },
+  "CWE-552": {
+    "capecs": [
+      "CAPEC-150",
+      "CAPEC-639"
+    ],
+    "mitre_techniques": [
+      "T1555",
+      "T1552.004",
+      "T1003",
+      "T1213",
+      "T1530",
+      "T1552.003",
+      "T1552.006",
+      "T1119",
+      "T1552.001",
+      "T1602",
+      "T1039"
+    ]
+  },
+  "CWE-553": {
+    "capecs": [
+      "CAPEC-650"
+    ],
+    "mitre_techniques": [
+      "T1505.003"
+    ]
+  },
+  "CWE-564": {
+    "capecs": [
+      "CAPEC-109"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-565": {
+    "capecs": [
+      "CAPEC-226",
+      "CAPEC-31",
+      "CAPEC-39"
+    ],
+    "mitre_techniques": [
+      "T1539"
+    ]
+  },
+  "CWE-567": {
+    "capecs": [
+      "CAPEC-25"
+    ],
+    "mitre_techniques": [
+      "T1499.004"
+    ]
+  },
+  "CWE-589": {
+    "capecs": [
+      "CAPEC-96"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-59": {
+    "capecs": [
+      "CAPEC-132",
+      "CAPEC-17",
+      "CAPEC-35",
+      "CAPEC-76"
+    ],
+    "mitre_techniques": [
+      "T1547.009",
+      "T1027.009",
+      "T1564.009",
+      "T1027.006",
+      "T1574.005",
+      "T1574.010"
+    ]
+  },
+  "CWE-593": {
+    "capecs": [
+      "CAPEC-94"
+    ],
+    "mitre_techniques": [
+      "T1557"
+    ]
+  },
+  "CWE-6": {
+    "capecs": [
+      "CAPEC-21",
+      "CAPEC-59"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1134",
+      "T1528"
+    ]
+  },
+  "CWE-601": {
+    "capecs": [
+      "CAPEC-178"
+    ],
+    "mitre_techniques": ["T1189"]
+  },
+  "CWE-843": {
+    "capecs": [
+        "CAPEC-123"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-416": {
+    "capecs": [
+        "CAPEC-123"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-364": {
+    "capecs": [
+        "CAPEC-26"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-602": {
+    "capecs": [
+      "CAPEC-162",
+      "CAPEC-202",
+      "CAPEC-207",
+      "CAPEC-208",
+      "CAPEC-21",
+      "CAPEC-31",
+      "CAPEC-383",
+      "CAPEC-384",
+      "CAPEC-385",
+      "CAPEC-386",
+      "CAPEC-387",
+      "CAPEC-388"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1134",
+      "T1528",
+      "T1056.004"
+    ]
+  },
+  "CWE-61": {
+    "capecs": [
+      "CAPEC-27"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-610": {
+    "capecs": [
+      "CAPEC-219"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-611": {
+    "capecs": [
+      "CAPEC-221"
+    ],
+    "mitre_techniques": ["T1190","T1083"]
+  },
+  "CWE-614": {
+    "capecs": [
+      "CAPEC-102"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-638": {
+    "capecs": [
+      "CAPEC-104"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-640": {
+    "capecs": [
+      "CAPEC-50"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-642": {
+    "capecs": [
+      "CAPEC-21",
+      "CAPEC-31"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1134",
+      "T1528"
+    ]
+  },
+  "CWE-645": {
+    "capecs": [
+      "CAPEC-2"
+    ],
+    "mitre_techniques": [
+      "T1531"
+    ]
+  },
+  "CWE-646": {
+    "capecs": [
+      "CAPEC-209"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-648": {
+    "capecs": [
+      "CAPEC-107",
+      "CAPEC-234"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-649": {
+    "capecs": [
+      "CAPEC-463"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-654": {
+    "capecs": [
+      "CAPEC-16",
+      "CAPEC-274",
+      "CAPEC-49",
+      "CAPEC-55",
+      "CAPEC-560",
+      "CAPEC-565",
+      "CAPEC-600",
+      "CAPEC-652",
+      "CAPEC-653",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1078",
+      "T1110.001",
+      "T1110.002",
+      "T1078.001",
+      "T1558",
+      "T1110.003",
+      "T1110.004"
+    ]
+  },
+  "CWE-662": {
+    "capecs": [
+      "CAPEC-25",
+      "CAPEC-26",
+      "CAPEC-27",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": [
+      "T1499.004"
+    ]
+  },
+  "CWE-663": {
+    "capecs": [
+      "CAPEC-29"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-664": {
+    "capecs": [
+      "CAPEC-196",
+      "CAPEC-21",
+      "CAPEC-60",
+      "CAPEC-61",
+      "CAPEC-62"
+    ],
+    "mitre_techniques": [
+      "T1539",
+      "T1606",
+      "T1528",
+      "T1134.002",
+      "T1550.004",
+      "T1134.001",
+      "T1134.003",
+      "T1134"
+    ]
+  },
+  "CWE-665": {
+    "capecs": [
+      "CAPEC-26",
+      "CAPEC-29"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-667": {
+    "capecs": [
+      "CAPEC-25",
+      "CAPEC-26",
+      "CAPEC-27"
+    ],
+    "mitre_techniques": [
+      "T1499.004"
+    ]
+  },
+  "CWE-674": {
+    "capecs": [
+      "CAPEC-230",
+      "CAPEC-231"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-680": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-100",
+      "CAPEC-14",
+      "CAPEC-24",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-67",
+      "CAPEC-8",
+      "CAPEC-9",
+      "CAPEC-92"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-682": {
+    "capecs": [
+      "CAPEC-128",
+      "CAPEC-129"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-689": {
+    "capecs": [
+      "CAPEC-26",
+      "CAPEC-27"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-69": {
+    "capecs": [
+      "CAPEC-168"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-691": {
+    "capecs": [
+      "CAPEC-29"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-692": {
+    "capecs": [
+      "CAPEC-120",
+      "CAPEC-267",
+      "CAPEC-71",
+      "CAPEC-80",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": [
+      "T1027"
+    ]
+  },
+  "CWE-693": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-107",
+      "CAPEC-127",
+      "CAPEC-17",
+      "CAPEC-20",
+      "CAPEC-22",
+      "CAPEC-237",
+      "CAPEC-36",
+      "CAPEC-477",
+      "CAPEC-480",
+      "CAPEC-51",
+      "CAPEC-57",
+      "CAPEC-59",
+      "CAPEC-65",
+      "CAPEC-668",
+      "CAPEC-74",
+      "CAPEC-87"
+    ],
+    "mitre_techniques": [
+      "T1565.002",
+      "T1611",
+      "T1040",
+      "T1574.005",
+      "T1574.010",
+      "T1083"
+    ]
+  },
+  "CWE-695": {
+    "capecs": [
+      "CAPEC-36"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-696": {
+    "capecs": [
+      "CAPEC-463"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-697": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-120",
+      "CAPEC-14",
+      "CAPEC-15",
+      "CAPEC-182",
+      "CAPEC-24",
+      "CAPEC-267",
+      "CAPEC-3",
+      "CAPEC-41",
+      "CAPEC-43",
+      "CAPEC-44",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-52",
+      "CAPEC-53",
+      "CAPEC-6",
+      "CAPEC-64",
+      "CAPEC-67",
+      "CAPEC-7",
+      "CAPEC-71",
+      "CAPEC-73",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-8",
+      "CAPEC-80",
+      "CAPEC-88",
+      "CAPEC-9",
+      "CAPEC-92"
+    ],
+    "mitre_techniques": [
+      "T1027"
+    ]
+  },
+  "CWE-706": {
+    "capecs": [
+      "CAPEC-159",
+      "CAPEC-177",
+      "CAPEC-48",
+      "CAPEC-641"
+    ],
+    "mitre_techniques": [
+      "T1574.002",
+      "T1036",
+      "T1574.008"
+    ]
+  },
+  "CWE-707": {
+    "capecs": [
+      "CAPEC-250",
+      "CAPEC-276",
+      "CAPEC-277",
+      "CAPEC-278",
+      "CAPEC-279",
+      "CAPEC-3",
+      "CAPEC-43",
+      "CAPEC-468",
+      "CAPEC-52",
+      "CAPEC-53",
+      "CAPEC-64",
+      "CAPEC-7",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-83",
+      "CAPEC-84"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-73": {
+    "capecs": [
+      "CAPEC-13",
+      "CAPEC-267",
+      "CAPEC-64",
+      "CAPEC-72",
+      "CAPEC-76",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-80"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1574.007",
+      "T1562.003",
+      "T1027"
+    ]
+  },
+  "CWE-732": {
+    "capecs": [
+      "CAPEC-1",
+      "CAPEC-122",
+      "CAPEC-127",
+      "CAPEC-17",
+      "CAPEC-180",
+      "CAPEC-206",
+      "CAPEC-234",
+      "CAPEC-60",
+      "CAPEC-61",
+      "CAPEC-62",
+      "CAPEC-642"
+    ],
+    "mitre_techniques": [
+      "T1574.010",
+      "T1134.001",
+      "T1550.004",
+      "T1554",
+      "T1553.002",
+      "T1505.005",
+      "T1574.005",
+      "T1083",
+      "T1548"
+    ]
+  },
+  "CWE-733": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-24",
+      "CAPEC-46",
+      "CAPEC-8",
+      "CAPEC-9"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-74": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-101",
+      "CAPEC-105",
+      "CAPEC-108",
+      "CAPEC-120",
+      "CAPEC-13",
+      "CAPEC-135",
+      "CAPEC-14",
+      "CAPEC-24",
+      "CAPEC-250",
+      "CAPEC-267",
+      "CAPEC-273",
+      "CAPEC-28",
+      "CAPEC-3",
+      "CAPEC-34",
+      "CAPEC-42",
+      "CAPEC-43",
+      "CAPEC-45",
+      "CAPEC-46",
+      "CAPEC-47",
+      "CAPEC-51",
+      "CAPEC-52",
+      "CAPEC-53",
+      "CAPEC-6",
+      "CAPEC-64",
+      "CAPEC-67",
+      "CAPEC-7",
+      "CAPEC-71",
+      "CAPEC-72",
+      "CAPEC-76",
+      "CAPEC-78",
+      "CAPEC-79",
+      "CAPEC-8",
+      "CAPEC-80",
+      "CAPEC-83",
+      "CAPEC-84",
+      "CAPEC-9"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1574.007",
+      "T1562.003",
+      "T1027"
+    ]
+  },
+  "CWE-749": {
+    "capecs": [
+      "CAPEC-500"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-75": {
+    "capecs": [
+      "CAPEC-81",
+      "CAPEC-93"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-757": {
+    "capecs": [
+      "CAPEC-220",
+      "CAPEC-606",
+      "CAPEC-620"
+    ],
+    "mitre_techniques": [
+      "T1600"
+    ]
+  },
+  "CWE-77": {
+    "capecs": [
+      "CAPEC-136",
+      "CAPEC-15",
+      "CAPEC-183",
+      "CAPEC-248",
+      "CAPEC-40",
+      "CAPEC-43",
+      "CAPEC-75",
+      "CAPEC-76"
+    ],
+    "mitre_techniques": ["T1059"]
+  },
+  "CWE-770": {
+    "capecs": [
+      "CAPEC-125",
+      "CAPEC-130",
+      "CAPEC-147",
+      "CAPEC-197",
+      "CAPEC-229",
+      "CAPEC-230",
+      "CAPEC-231",
+      "CAPEC-469",
+      "CAPEC-482",
+      "CAPEC-486",
+      "CAPEC-487",
+      "CAPEC-488",
+      "CAPEC-489",
+      "CAPEC-490",
+      "CAPEC-491",
+      "CAPEC-493",
+      "CAPEC-494",
+      "CAPEC-495",
+      "CAPEC-496",
+      "CAPEC-528"
+    ],
+    "mitre_techniques": [
+      "T1499.003",
+      "T1499.002",
+      "T1499",
+      "T1499.001",
+      "T1498.001",
+      "T1498.002"
+    ]
+  },
+  "CWE-772": {
+    "capecs": [
+      "CAPEC-469"
+    ],
+    "mitre_techniques": [
+      "T1499.002"
+    ]
+  },
+  "CWE-776": {
+    "capecs": [
+      "CAPEC-197"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-78": {
+    "capecs": [
+      "CAPEC-108",
+      "CAPEC-15",
+      "CAPEC-43",
+      "CAPEC-6",
+      "CAPEC-88"
+    ],
+    "mitre_techniques": [
+        "T1059",
+        "T1190"
+    ]
+  },
+  "CWE-79": {
+    "capecs": [
+      "CAPEC-209",
+      "CAPEC-588",
+      "CAPEC-591",
+      "CAPEC-592",
+      "CAPEC-63",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": ["T1189"]
+  },
+  "CWE-798": {
+    "capecs": [
+      "CAPEC-191",
+      "CAPEC-70"
+    ],
+    "mitre_techniques": [
+      "T1552.001",
+      "T1078.001"
+    ]
+  },
+  "CWE-80": {
+    "capecs": [
+      "CAPEC-18",
+      "CAPEC-193",
+      "CAPEC-32",
+      "CAPEC-86"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-805": {
+    "capecs": [
+      "CAPEC-100",
+      "CAPEC-256"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-81": {
+    "capecs": [
+      "CAPEC-198"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-822": {
+    "capecs": [
+      "CAPEC-129"
+    ],
+    "mitre_techniques": ["T1499"]
+  },
+  "CWE-823": {
+    "capecs": [
+      "CAPEC-129"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-829": {
+    "capecs": [
+      "CAPEC-175",
+      "CAPEC-201",
+      "CAPEC-228",
+      "CAPEC-251",
+      "CAPEC-252",
+      "CAPEC-253",
+      "CAPEC-263",
+      "CAPEC-538",
+      "CAPEC-549",
+      "CAPEC-640",
+      "CAPEC-660",
+      "CAPEC-695",
+      "CAPEC-698"
+    ],
+    "mitre_techniques": [
+      "T1574.006",
+      "T1505.004",
+      "T1574.013",
+      "T1055",
+      "T1195.001",
+      "T1620",
+      "T1505.005",
+      "T1176"
+    ]
+  },
+  "CWE-83": {
+    "capecs": [
+      "CAPEC-243",
+      "CAPEC-244",
+      "CAPEC-588"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-833": {
+    "capecs": [
+      "CAPEC-25"
+    ],
+    "mitre_techniques": [
+      "T1499.004"
+    ]
+  },
+  "CWE-836": {
+    "capecs": [
+      "CAPEC-644",
+      "CAPEC-652"
+    ],
+    "mitre_techniques": [
+      "T1558",
+      "T1550.002"
+    ]
+  },
+  "CWE-838": {
+    "capecs": [
+      "CAPEC-468"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-85": {
+    "capecs": [
+      "CAPEC-245"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-86": {
+    "capecs": [
+      "CAPEC-247",
+      "CAPEC-73",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-862": {
+    "capecs": [
+      "CAPEC-665"
+    ],
+    "mitre_techniques": [
+      "T1211",
+      "T1556",
+      "T1542.002"
+    ]
+  },
+  "CWE-87": {
+    "capecs": [
+      "CAPEC-199"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-88": {
+    "capecs": [
+      "CAPEC-137",
+      "CAPEC-174",
+      "CAPEC-41",
+      "CAPEC-460",
+      "CAPEC-88"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-90": {
+    "capecs": [
+      "CAPEC-136"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-91": {
+    "capecs": [
+      "CAPEC-250",
+      "CAPEC-83"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-912": {
+    "capecs": [
+      "CAPEC-133",
+      "CAPEC-190"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-916": {
+    "capecs": [
+      "CAPEC-55"
+    ],
+    "mitre_techniques": [
+      "T1110.002"
+    ]
+  },
+  "CWE-474": {
+    "capecs": [
+        "CAPEC-100"
+    ],
+    "mitre_techniques": [
+        "T1203"
+    ]
+},
+  "CWE-918": {
+    "capecs": [
+      "CAPEC-664"
+    ],
+    "mitre_techniques": ["T1190"]
+  },
+  "CWE-923": {
+    "capecs": [
+      "CAPEC-161",
+      "CAPEC-481",
+      "CAPEC-501",
+      "CAPEC-697"
+    ],
+    "mitre_techniques": [
+      "T1557.003",
+      "T1090.004"
+    ]
+  },
+  "CWE-925": {
+    "capecs": [
+      "CAPEC-499"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-93": {
+    "capecs": [
+      "CAPEC-15",
+      "CAPEC-81"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-94": {
+    "capecs": [
+      "CAPEC-242",
+      "CAPEC-35",
+      "CAPEC-77"
+    ],
+    "mitre_techniques": [
+      "T1564.009",
+      "T1027.006",
+      "T1027.009"
+    ]
+  },
+  "CWE-940": {
+    "capecs": [
+      "CAPEC-500",
+      "CAPEC-594",
+      "CAPEC-595",
+      "CAPEC-596"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-943": {
+    "capecs": [
+      "CAPEC-676"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-95": {
+    "capecs": [
+      "CAPEC-35"
+    ],
+    "mitre_techniques": [
+      "T1564.009",
+      "T1027.006",
+      "T1027.009"
+    ]
+  },
+  "CWE-96": {
+    "capecs": [
+      "CAPEC-35",
+      "CAPEC-73",
+      "CAPEC-77",
+      "CAPEC-81",
+      "CAPEC-85"
+    ],
+    "mitre_techniques": [
+      "T1564.009",
+      "T1027.006",
+      "T1027.009"
+    ]
+  },
+  "CWE-97": {
+    "capecs": [
+      "CAPEC-101",
+      "CAPEC-35"
+    ],
+    "mitre_techniques": [
+      "T1564.009",
+      "T1027.006",
+      "T1027.009"
+    ]
+  },
+  "CWE-98": {
+    "capecs": [
+      "CAPEC-193"
+    ],
+    "mitre_techniques": []
+  },
+  "CWE-99": {
+    "capecs": [
+      "CAPEC-10",
+      "CAPEC-240",
+      "CAPEC-75"
+    ],
+    "mitre_techniques": []
+  }
+}
