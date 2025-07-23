@@ -36,7 +36,7 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/Yuning-J/APTArena.git
-   cd CyGATE
+   cd APTArena
    ```
 2. **Set up a Python environment:**
    ```sh
