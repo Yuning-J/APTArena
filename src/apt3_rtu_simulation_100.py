@@ -2165,7 +2165,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run APT3 RTU-targeted simulation with enhanced strategic attacker")
     parser.add_argument("--data-file", type=str, default="../data/systemData/apt3_scenario_enriched.json",
                         help="Path to system data JSON file")
-    parser.add_argument("--num-steps", type=int, default=50, help="Number of simulation steps")
+    parser.add_argument("--num-steps", type=int, default=100, help="Number of simulation steps")
     parser.add_argument("--defender-budget", type=int, default=7500, help="Defender's patching budget in dollars")
     parser.add_argument("--attacker-budget", type=int, default=15000, help="Attacker's budget in dollars")
     parser.add_argument("--psi", type=float, default=1.0, help="Weight balancing risk and operational cost")
