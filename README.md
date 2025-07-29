@@ -31,6 +31,9 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
 - Comprehensive result analysis and visualizations
 - Modular codebase for research and extension
 
+<p align="center">
+<img src="https://github.com/Yuning-J/VulRG/blob/main/figs/openPLC.png" alt="System" width="250px">
+</p>
 
 ## Installation
 1. **Clone the repository:**
