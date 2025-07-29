@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass
 
 from .patching_strategies import ThreatIntelligenceStrategy
-from RL_defender_strategy import RLAdaptiveThreatIntelligenceStrategy
+from src.RL_defender_strategy import RLAdaptiveThreatIntelligenceStrategy
 
 @dataclass
 class HybridDecision:

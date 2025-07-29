@@ -13,25 +13,25 @@ class TransitionFunction:
         self.stage_progression_threshold = stage_progression_threshold
 
     def apply_actions(self, state: State, defender_actions: List[Vulnerability],
-                      attacker_actions: List[Vulnerability]) -> None:
-        """Apply defender and attacker actions to the system state."""
-        logger.info(f"Applying {len(defender_actions)} defender actions and {len(attacker_actions)} attacker actions")
-
-        # Apply defender patches
+                     attacker_actions: List[Vulnerability], current_step: int = None) -> None:
+        """
+        Apply defender and attacker actions to the system state.
+        
+        Args:
+            state: Current system state
+            defender_actions: List of vulnerabilities to patch
+            attacker_actions: List of vulnerabilities to exploit
+            current_step: Current simulation step (for logging)
+        """
+        # Apply defender actions first
         self._apply_defender_actions(state, defender_actions)
-
-        # Filter out already exploited vulnerabilities
-        unexploited_actions = [vuln for vuln in attacker_actions if not getattr(vuln, 'is_exploited', False)]
-        if len(unexploited_actions) < len(attacker_actions):
-            filtered_count = len(attacker_actions) - len(unexploited_actions)
-            logger.info(f"Filtered out {filtered_count} already exploited vulnerabilities")
-
-        # Apply attacker exploits
-        successful_exploits = self._apply_attacker_actions(state, unexploited_actions)
-
+        
+        # Apply attacker actions
+        successful_exploits = self._apply_attacker_actions(state, attacker_actions)
+        
         # Update kill chain stage
         self._update_kill_chain_stage(state, successful_exploits)
-
+        
         # Update system metrics
         state.phi = state.compute_phi()
         state.system.increment_time()
@@ -40,7 +40,8 @@ class TransitionFunction:
 
         # Log current state with detailed asset information
         compromised_assets = [asset for asset in state.system.assets if asset.is_compromised]
-        logger.info(f"Step {state.system.time_step}: {len(compromised_assets)} assets compromised: "
+        step_display = current_step if current_step is not None else state.system.time_step
+        logger.info(f"Step {step_display}: {len(compromised_assets)} assets compromised: "
                     f"{[(asset.asset_id, asset.name) for asset in compromised_assets]}")
 
     def apply(self, state: State, defender_actions: List[Vulnerability], attacker_actions: List[Vulnerability]) -> None:
@@ -271,6 +272,11 @@ class TransitionFunction:
             state.time_in_stage = 0
         else:
             state.time_in_stage += 1
+            
+        # Emergency cap on time_in_stage to prevent runaway counters
+        if state.time_in_stage > 1000:
+            logger.error(f"EMERGENCY: time_in_stage exceeded 1000 (current: {state.time_in_stage}), resetting")
+            state.time_in_stage = 0
 
         # Initialize stage-specific tracking
         if not hasattr(state, 'stage_achievements'):

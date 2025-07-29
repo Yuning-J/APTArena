@@ -15,7 +15,7 @@ import copy
 import sys
 import io
 
-from classes.state import State, Vulnerability
+from classes.state import State, Vulnerability, create_vuln_key
 from classes.cost import CostCalculator
 
 
@@ -155,7 +155,7 @@ class PatchingStrategy:
         return patch_list
 
     def _calculate_decreasing_step_budget(self, total_budget: float, current_step: int,
-                                          total_steps: int, remaining_budget: float) -> float:
+                                          total_steps: int, remaining_budget: float, state: State) -> float:
         """
         Calculate a decreasing budget allocation with improved dynamics to ensure
         budget is available throughout all steps.
@@ -165,6 +165,7 @@ class PatchingStrategy:
             current_step: Current simulation step (0-indexed)
             total_steps: Total number of simulation steps
             remaining_budget: Current remaining budget
+            state: Current simulation state
 
         Returns:
             float: Budget allocated for this step
@@ -181,12 +182,18 @@ class PatchingStrategy:
             fraction = max(0.1, 1.5 / max(1, steps_remaining))
 
         base_budget = remaining_budget * fraction
-        unpatched_vulns = self._get_unpatched_vulnerabilities(self.state, verbose=False)
-        patch_costs = [
-            self._cost_cache['patch_costs'].get(f"{vuln.cve_id}:{asset.asset_id}:{comp.id}", 200.0)
-            for vuln, asset, comp in unpatched_vulns
-            if not (self.is_zero_day_vulnerability(vuln) and not self.can_recognize_zero_day())
-        ]
+        unpatched_vulns = self._get_unpatched_vulnerabilities(state, verbose=False)
+        
+        # Safety check: ensure cost cache is available
+        if not hasattr(self, '_cost_cache') or not self._cost_cache or 'patch_costs' not in self._cost_cache:
+            print(f"WARNING: Cost cache not available for {self.name} strategy. Using default costs.")
+            patch_costs = [200.0] * len(unpatched_vulns)  # Default cost
+        else:
+            patch_costs = [
+                self._cost_cache['patch_costs'].get(create_vuln_key(vuln.cve_id, asset.asset_id, comp.id), 200.0)
+                for vuln, asset, comp in unpatched_vulns
+                if not (self.is_zero_day_vulnerability(vuln) and not self.can_recognize_zero_day())
+            ]
 
         min_budget = min(patch_costs) if patch_costs else 100.0
         median_cost = sorted(patch_costs)[len(patch_costs) // 2] if patch_costs else 200.0
@@ -215,7 +222,7 @@ class PatchingStrategy:
         Calculate exploit likelihood based on CVSS, EPSS, exploit presence, and ransomware association.
         Uses calculate_cvss_exploit_likelihood() for EPSS contribution.
         Args:
-            vuln: Vulnerability object with cvss, epss, exploit, and ransomWare attributes
+            vuln: Vulnerability object with cvss, epss, exploit, and ransomware attributes
             weights: Optional dictionary with keys 'cvss_weight', 'epss_weight', 'exploit_weight', 'ransomware_weight'
         Returns:
             float: Likelihood in [0, 1]
@@ -311,7 +318,7 @@ class PatchingStrategy:
         """
         unpatched_vulns = self._get_unpatched_vulnerabilities(state, verbose=False)
         step_budget = self._calculate_decreasing_step_budget(
-            remaining_budget, current_step, total_steps, remaining_budget)
+            remaining_budget, current_step, total_steps, remaining_budget, state)
 
         print(f"Step {current_step}: {self.name} has ${step_budget:.2f} budget remaining")
 
@@ -344,8 +351,14 @@ class PatchingStrategy:
                 scored_vulns.append(vuln_data)
                 continue
 
-            vuln_info = self._cost_cache['vulnerability_info'].get(vuln_key, {})
-            patch_cost = self._cost_cache['patch_costs'].get(vuln_key, 200.0)
+            # Safety check: ensure cost cache is available and has required keys
+            if not hasattr(self, '_cost_cache') or not self._cost_cache or 'patch_costs' not in self._cost_cache:
+                print(f"WARNING: Cost cache not available for {self.name} strategy. Using default costs.")
+                patch_cost = 200.0
+                vuln_info = {}
+            else:
+                patch_cost = self._cost_cache['patch_costs'].get(vuln_key, 200.0)
+                vuln_info = self._cost_cache.get('vulnerability_info', {}).get(vuln_key, {})
 
             if patch_cost > step_budget:
                 continue
@@ -390,7 +403,7 @@ class PatchingStrategy:
                 continue
 
             if total_cost + vuln_info['patch_cost'] <= step_budget:
-                patch_list.append((vuln_info['vulnerability'], vuln_info['patch_cost']))
+                patch_list.append((vuln_info['vulnerability'], vuln_info['patch_cost'], vuln_info['asset'], vuln_info['component']))
                 total_cost += vuln_info['patch_cost']
                 step_patched_vulns.add(vuln_info['vuln_key'])
                 decision = "PATCH"
@@ -407,11 +420,12 @@ class PatchingStrategy:
             print(f"  Zero-day vulnerabilities filtered: {zero_days_filtered}")
         print("-" * 80)
 
-        for vuln, _ in patch_list:
-            vuln_key = f"{vuln.cve_id}:{asset.asset_id}:{component.id}"
+        for vuln, _, asset, component in patch_list:
+            vuln_key = create_vuln_key(vuln.cve_id, asset.asset_id, component.id)
             self._patched_vulns.add(vuln_key)
 
-        return patch_list
+        # Convert back to the expected format (vulnerability, cost) tuples
+        return [(vuln, cost) for vuln, cost, _, _ in patch_list]
 
     def select_patches(self, state: State, remaining_budget: float, current_step: int,
                        total_steps: int) -> List[Tuple[Vulnerability, float]]:
@@ -981,11 +995,17 @@ class ThreatIntelligenceStrategy(PatchingStrategy):
         
         # Get unpatched vulnerabilities to calculate cost-based constraints
         unpatched_vulns = self._get_unpatched_vulnerabilities(state, verbose=False)
-        patch_costs = [
-            self._cost_cache['patch_costs'].get(f"{vuln.cve_id}:{asset.asset_id}:{comp.id}", 200.0)
-            for vuln, asset, comp in unpatched_vulns
-            if not (self.is_zero_day_vulnerability(vuln) and not self.can_recognize_zero_day())
-        ]
+        
+        # Safety check: ensure cost cache is available
+        if not hasattr(self, '_cost_cache') or not self._cost_cache or 'patch_costs' not in self._cost_cache:
+            print(f"WARNING: Cost cache not available for {self.name} strategy. Using default costs.")
+            patch_costs = [200.0] * len(unpatched_vulns)  # Default cost
+        else:
+            patch_costs = [
+                self._cost_cache['patch_costs'].get(create_vuln_key(vuln.cve_id, asset.asset_id, comp.id), 200.0)
+                for vuln, asset, comp in unpatched_vulns
+                if not (self.is_zero_day_vulnerability(vuln) and not self.can_recognize_zero_day())
+            ]
 
         if not patch_costs:
             return min(remaining_budget, 800.0)  # Reasonable default budget
