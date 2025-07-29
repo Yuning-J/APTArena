@@ -42,7 +42,7 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
    ```sh
    python3 -m venv .venv
    source .venv/bin/activate
-   pip install -r requirements.txt  # 
+   pip install -r requirements.txt  
    ```
 
 ## Usage
