@@ -145,23 +145,18 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
             print(f"Error saving Q-table: {e}")
 
     def initialize(self, state: State, cost_cache: Dict, defender_budget: float = 0.0):
+        """Initialize the RL strategy with state and cost cache"""
         super().initialize(state, cost_cache)
-        if defender_budget is not None:
-            self.defender_budget = defender_budget
-        self.defender_budget_history = []
-        self._last_budget_step = -1
-        self._last_budget_value = None
-        self._processed_steps = set()
-        self._unpatched_vulns_cache = None
-        self._current_weights = None
-        self._attacker_actions = []
-        self.state = state
-        self.last_state = None
-        self.last_action = None
-        self.last_reward = 0.0
-        self.total_patch_cost = 0.0
-        self.total_patch_count = 0
-        self.episode_count += 1
+        self.defender_budget = defender_budget
+        self._last_budget_value = defender_budget
+        self._last_budget_step = 0
+        
+        # Initialize threat intelligence features
+        self.threat_intel_features['asset_threat_levels'] = {
+            str(asset.asset_id): 0.1 for asset in state.system.assets
+        }
+        
+        logger.info(f"RL Adaptive Threat Intelligence Strategy initialized with budget: ${defender_budget:.2f}")
 
     def update_attacker_actions(self, actions: List[Dict]) -> None:
         self._attacker_actions = actions
@@ -605,7 +600,7 @@ class RLAdaptiveThreatIntelligenceStrategy(PatchingStrategy):
                 zero_days_found += 1
                 print(f"🚨 ZERO-DAY DETECTED: {vuln_key} - HIGH PRIORITY!")
 
-            vuln_info = self._cost_cache['vulnerability_info'].get(vuln_key, {})
+            vuln_info = self._cost_cache.get('vulnerability_info', {}).get(vuln_key, {})
             patch_cost = self._cost_cache['patch_costs'].get(vuln_key, 200.0)
 
             # MODIFIED: Allow zero-days even if they exceed step budget (emergency)
