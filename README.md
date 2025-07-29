@@ -63,8 +63,7 @@ The trained Q-table will be saved in `src/rl_defender_training_results/`.
 ### 3. **Analyze Results**
 Use the analysis scripts to generate plots and tables:
 ```sh
-python src/analyze_asset_protection.py
-python src/simulation_analysis_systematic.py
+python src/simulation_analysis.py
 ```
 
 ## Customization
