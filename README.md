@@ -47,14 +47,11 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
 
 ## Usage
 ### 1. **Run a Simulation**
-To run a simulation with the Hybrid (CyGATE) strategy and baselines:
+To run simulation with the Hybrid (CyGATE) strategy and baselines for 100-trial experiments:
 ```sh
-python src/apt3_rtu_simulation.py --data_file data/systemData/apt3_scenario_enriched.json --num_steps 50 --defender_budget 7500
+python src/apt3_simulation_main.py --data_file data/systemData/apt3_scenario_enriched.json ----num-trials 100  
 ```
-Or for 100-trial experiments:
-```sh
-python src/apt3_rtu_simulation_100.py --data_file data/systemData/apt3_scenario_enriched.json --num_steps 50 --num_trials 100 --defender_budget 7500
-```
+
 
 ### 2. **Train the RL Component**
 To train the RL component for the Hybrid strategy:
