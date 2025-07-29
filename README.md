@@ -32,7 +32,7 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
 - Modular codebase for research and extension
 
 <p align="center">
-<img src="https://github.com/Yuning-J/APTArena/blob/main/figs/Architecture.png" alt="System" width="250px">
+<img src="https://github.com/Yuning-J/APTArena/blob/main/figs/Architecture.png" alt="System" width="750px">
 </p>
 
 ## Installation
