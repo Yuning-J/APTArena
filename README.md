@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/Yuni0217/APTArena">
+  <a href="https://github.com//Yuning-J/APTArena">
   </a>
   <br />
 
