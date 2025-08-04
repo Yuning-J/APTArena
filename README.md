@@ -74,16 +74,8 @@ python src/simulation_analysis.py
 - **Strategies:** Implement new strategies in `classes/patching_strategies.py` or `classes/hybrid_strategy.py`.
 - **Visualization:** Modify or extend plotting in the analysis scripts in `src/`.
 
-## Citing Our Work
-If you use APTArena in your research, please cite:
-```
-@misc{jiang2025cygategametheoreticcyberattackdefense,
-      title={CyGATE: Game-Theoretic Cyber Attack-Defense Engine for Patch Strategy Optimization}, 
-      author={Yuning Jiang and Nay Oo and Qiaoran Meng and Lu Lin and Dusit Niyato and Zehui Xiong and Hoon Wei Lim and Biplab Sikdar},
-      year={2025},
-      eprint={2508.00478},
-      archivePrefix={arXiv},
-      primaryClass={cs.CR},
-      url={https://arxiv.org/abs/2508.00478}, 
-}
-```
+## More Details
+
+You can find more details on this work in the following paper: [CyGATE: Game-Theoretic Cyber Attack-Defense Engine for Patch Strategy Optimization](http://arxiv.org/abs/2508.00478) 
+
+
