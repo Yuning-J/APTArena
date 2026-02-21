@@ -50,9 +50,11 @@ Cybersecurity simulation arena for testing and benchmarking defense strategies a
 
 ## Usage
 ### 1. **Run a Simulation**
-To run simulation with the Hybrid (CyGATE) strategy and baselines for 100-trial experiments:
+Run simulation with Hybrid (CyGATE) and baseline strategies:
 ```sh
-python src/apt3_simulation_main.py --data_file data/systemData/apt3_scenario_enriched.json ----num-trials 100  
+python src/apt3_simulation_main.py \
+  --data-file data/systemData/apt3_scenario_enriched.json \
+  --num-trials 100
 ```
 
 
@@ -64,10 +66,16 @@ python src/RL_defender_simulation.py --data_file data/systemData/apt3_scenario_e
 The trained Q-table will be saved in `src/rl_defender_training_results/`.
 
 ### 3. **Analyze Results**
-Use the analysis scripts to generate plots and tables:
+Use the analysis script to generate plots and summary tables:
 ```sh
 python src/simulation_analysis.py
 ```
+
+## Project Structure
+- `src/apt3_simulation_core.py`: Core simulation components and state transition logic
+- `src/apt3_simulation_run.py`: Runner and strategy comparison logic
+- `src/apt3_simulation_main.py`: Main CLI entrypoint for experiments
+- `src/simulation_analysis.py`: Post-simulation analysis
 
 ## Customization
 - **Scenario files:** Edit or add JSON files in `data/systemData/`.
@@ -77,5 +85,4 @@ python src/simulation_analysis.py
 ## More Details
 
 You can find more details on this work in the following paper: [CyGATE: Game-Theoretic Cyber Attack-Defense Engine for Patch Strategy Optimization](http://arxiv.org/abs/2508.00478) 
-
 
