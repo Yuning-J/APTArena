@@ -72,6 +72,39 @@ python src/apt3_simulation_analysis.py --mode standard apt3_simulation_results/s
 python src/apt3_simulation_viz.py --help
 ```
 
+## RL Reproducibility (Public)
+Use the command sequence below for a clean, reproducible workflow:
+
+```sh
+# 1) Train RL policy
+python src/RL_defender_simulation.py \
+  --data_file data/systemData/apt3_scenario_enriched.json \
+  --num_episodes 500 \
+  --num_steps 50 \
+  --defender_budget 7500
+
+# 2) Run simulation benchmark
+python src/apt3_simulation_main.py \
+  --data-file data/systemData/apt3_scenario_enriched.json \
+  --num-steps 100 \
+  --defender-budget 7500 \
+  --attacker-budget 15000 \
+  --num-trials 100
+
+# 3) Analyze latest run
+python src/apt3_simulation_analysis.py --mode standard apt3_simulation_results/simulation_YYYYMMDD_HHMMSS
+python src/apt3_simulation_analysis.py --mode systematic apt3_simulation_results/simulation_YYYYMMDD_HHMMSS
+
+# 4) Generate visualization package
+python src/apt3_simulation_viz.py \
+  --input-file apt3_simulation_results/simulation_YYYYMMDD_HHMMSS/simulation_summary.json \
+  --output-dir apt3_simulation_results/simulation_YYYYMMDD_HHMMSS \
+  --num-trials 100
+```
+
+Public release checklist:
+- `docs/RL_PUBLIC_RELEASE_CHECKLIST.md`
+
 ## Project Structure
 - `src/apt3_simulation_core.py`: Core simulation components and state transition logic
 - `src/apt3_simulation_run.py`: Runner and strategy comparison logic
