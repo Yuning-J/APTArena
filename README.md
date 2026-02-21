@@ -66,16 +66,21 @@ python src/RL_defender_simulation.py --data_file data/systemData/apt3_scenario_e
 The trained Q-table will be saved in `src/rl_defender_training_results/`.
 
 ### 3. **Analyze Results**
-Use the analysis script to generate plots and summary tables:
+Use the split analysis and visualization entrypoints:
 ```sh
-python src/simulation_analysis.py
+python src/apt3_simulation_analysis.py --mode standard apt3_simulation_results/simulation_YYYYMMDD_HHMMSS
+python src/apt3_simulation_viz.py --help
 ```
 
 ## Project Structure
 - `src/apt3_simulation_core.py`: Core simulation components and state transition logic
 - `src/apt3_simulation_run.py`: Runner and strategy comparison logic
 - `src/apt3_simulation_main.py`: Main CLI entrypoint for experiments
-- `src/simulation_analysis.py`: Post-simulation analysis
+- `src/apt3_simulation_analysis.py`: Analysis entrypoint for standard/systematic workflows
+- `src/apt3_simulation_viz.py`: Visualization entrypoint for plotting and reporting
+
+Legacy compatibility:
+- `src/simulation_analysis.py` remains available for older workflows.
 
 ## Customization
 - **Scenario files:** Edit or add JSON files in `data/systemData/`.
@@ -85,4 +90,3 @@ python src/simulation_analysis.py
 ## More Details
 
 You can find more details on this work in the following paper: [CyGATE: Game-Theoretic Cyber Attack-Defense Engine for Patch Strategy Optimization](http://arxiv.org/abs/2508.00478) 
-
