@@ -190,6 +190,7 @@ class System:
         self.assets = []
         self.connections = []
         self.time_step = 0
+        self.action_history = []
 
     def add_asset(self, asset: Asset):
         self.assets.append(asset)
@@ -250,6 +251,8 @@ class State:
         self.defense_history = []
         self.temp_attacker_actions = []
         self.temp_successful_exploits = 0
+        self.lateral_movement_targets = []
+        self.lateral_movement_chain = []
 
     def record_attack(self, attacker_actions, success_count=0):
         self.attack_history.append({

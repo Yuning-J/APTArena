@@ -15,7 +15,6 @@ from .mitre import MitreTTP, APT3TacticMapping, KillChainStage, mitre_ttps, ckc_
 from .cost import CostCalculator
 from .belief_state import BeliefState
 from .transition import create_vuln_key
-from .action_result import ActionResult
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -676,7 +675,7 @@ class AttackerPOMDPPolicy:
 
         if tactic is None:
             logger.info("No tactic selected, skipping attack action")
-            return ActionResult.failure('none', 'no_action_available').to_dict()
+            return {'action_type': 'none', 'action_result': False}
 
         logger.info(f"Performing {tactic.name} attack action under uncertainty")
 
