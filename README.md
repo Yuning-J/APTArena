@@ -81,6 +81,7 @@ python src/apt3_simulation_viz.py --help
 
 Legacy compatibility:
 - `src/simulation_analysis.py` remains available for older workflows.
+- `src/apt3_rtu_simulation_100.py` remains as a thin wrapper to `src/apt3_simulation_main.py`.
 
 ## Customization
 - **Scenario files:** Edit or add JSON files in `data/systemData/`.

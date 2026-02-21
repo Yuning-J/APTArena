@@ -14,7 +14,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run analysis for APT3 simulation outputs.")
     parser.add_argument(
         "--mode",
-        choices=["standard", "systematic", "systematic_all"],
+        choices=["standard", "systematic"],
         default="standard",
         help="Analysis backend to execute.",
     )
@@ -28,8 +28,7 @@ def main() -> None:
     script_map = {
         "standard": "analyze_simulation_results.py",
         "systematic": "simulation_analysis_systematic.py",
-        "systematic_all": "simulation_analysis_systematic_all.py",
-    }
+            }
     script_name = script_map[args.mode]
     script_path = os.path.join(os.path.dirname(__file__), script_name)
 
