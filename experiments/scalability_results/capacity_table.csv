@@ -1,0 +1,7 @@
+Size,Num Assets,Num Vulns,Num Connections,Avg Step Latency (ms),Peak RAM (MB),Planner Calls/Trial,Feasibility
+S,20,76,67,18.1,0.7,25.0,Real-time
+S,50,213,169,51.7,1.7,25.0,Real-time
+M,100,420,338,121.5,3.6,25.0,Near-RT
+M,200,816,675,307.8,6.9,25.0,Near-RT
+L,500,2090,1687,1392.5,20.8,25.0,Batch
+XL,1000,4193,3356,3921.6,33.2,25.0,Batch
